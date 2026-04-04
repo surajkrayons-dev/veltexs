@@ -15,22 +15,32 @@ const SECONDARY_LINKS = [
   { label: 'Contact', href: '/contact' },
 ];
 
-// Rotating 3D torus knot – uses delta, no Clock deprecation
+// Cool V 3D Animation
 const ThreeDEffect = () => {
   const meshRef = useRef();
+  
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
     if (meshRef.current) {
-      meshRef.current.rotation.x = time * 0.2;
-      meshRef.current.rotation.y = time * 0.3;
-      meshRef.current.rotation.z = time * 0.1;
+      // Cool rotation with tilt
+      meshRef.current.rotation.y = time * 0.15;
+      meshRef.current.rotation.x = Math.sin(time * 0.08) * 0.1;
+      meshRef.current.rotation.z = Math.cos(time * 0.12) * 0.05;
     }
   });
+  
   return (
-    <mesh ref={meshRef} position={[0, 0, -3]}>
-      <torusKnotGeometry args={[1.2, 0.35, 180, 24]} />
-      <meshStandardMaterial color="#d44b1e" emissive="#ff5500" emissiveIntensity={0.8} wireframe />
-    </mesh>
+    <group ref={meshRef} position={[0, 0, -3]}>
+      {/* V shape - bigger and more gap at top */}
+      <mesh position={[-0.6, 0.5, 0]} rotation={[0, 0, 0.3]}>
+        <boxGeometry args={[0.5, 3, 0.5]} />
+        <meshStandardMaterial color="#ff4200" emissive="#ff4200" emissiveIntensity={1} />
+      </mesh>
+      <mesh position={[0.6, 0.5, 0]} rotation={[0, 0, -0.3]}>
+        <boxGeometry args={[0.5, 3, 0.5]} />
+        <meshStandardMaterial color="#ff4200" emissive="#ff4200" emissiveIntensity={1} />
+      </mesh>
+    </group>
   );
 };
 
@@ -163,12 +173,19 @@ export default function Nav({ navRef }) {
           <button
             onClick={() => {
               setMenuOpen(false);
-              // Scroll to top when V is clicked
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              // Navigate to home page and scroll to top when V is clicked
+              const currentPath = window.location.pathname;
+              if (currentPath !== '/') {
+                // If not on home page, navigate to home
+                window.location.href = '/';
+              } else {
+                // If already on home page, just scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
             className="pointer-events-auto flex items-center justify-center w-[46px] h-[46px] group outline-none flex-shrink-0"
             style={{ transformStyle: 'preserve-3d' }}
-            aria-label="Veltex Logo - Scroll to Top"
+            aria-label="Veltex Logo - Go to Home Top"
           >
             <div className="relative flex items-center justify-center w-full h-full bg-[rgba(59,57,55,0.65)] rounded-full transition-all duration-700 ease-in-out group-hover:rotate-y-180 group-hover:scale-110 shadow-[0_4px_30px_rgba(0,0,0,0.15)] border border-white/5">
               <svg viewBox="0 0 32 32" className="w-[30px] h-auto text-[#f4eff0] drop-shadow-md" style={{ backfaceVisibility: 'hidden' }}>

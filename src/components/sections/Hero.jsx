@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import { useHeroAnimation } from '../../hooks/useHeroAnimation';
 import { useHeroParallax } from '../../hooks/useScrollAnimations';
 import { useHeroOverlap } from '../../hooks/useHeroOverlap';
-import { VBackgroundPattern } from './VShape';
 
 export default function Hero({ navRef }) {
   const overlayRef = useRef(null);
@@ -89,6 +88,7 @@ export default function Hero({ navRef }) {
         className="fixed inset-0 z-[9999] bg-[#0a0a0a] flex items-center justify-center pointer-events-none"
         aria-hidden="true"
         id="v-intro-overlay"
+        style={{ display: 'none' }}
       >
         <svg className="w-[min(65vw,300px)]" viewBox="0 0 280 220" fill="none">
           <path
@@ -128,9 +128,6 @@ export default function Hero({ navRef }) {
 
         {/* Dark overlay */}
         <div ref={overlayBgRef} className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/55 via-[#0a0a0a]/25 to-[#0a0a0a]/72 z-[1]" aria-hidden="true" />
-
-        {/* Subtle V background pattern */}
-        <VBackgroundPattern color="#fff" opacity={0.06} />
 
         {/* Content */}
         <div ref={contentRef} className="relative z-[2] text-center px-8 max-w-[1100px]">

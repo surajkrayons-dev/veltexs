@@ -7,6 +7,11 @@ import { gsap } from 'gsap';
  */
 export function useHeroAnimation({ overlayRef, vPathRef, vTextRef, titleCharsRef, eyebrowRef, subRef, navRef, scrollRef }) {
   useEffect(() => {
+    // Check if overlay is hidden, if so, don't run animation
+    if (overlayRef?.current?.style?.display === 'none') {
+      return;
+    }
+
     if (!overlayRef?.current) return;
 
     let ctx = gsap.context(() => {
