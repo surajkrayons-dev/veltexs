@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const PROJECTS = [
   {
     id: 1, category: 'Brand Identity',

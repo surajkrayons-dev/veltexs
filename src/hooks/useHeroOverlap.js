@@ -2,68 +2,60 @@ import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function useHeroOverlap({ heroRef, contentRef, overlayBgRef, bgRef, scrollRef }) {
   useEffect(() => {
     if (!heroRef?.current) return;
-
-    const hero = heroRef.current;
-    
-    // Debug: Log the hero element
-    console.log('Hero element:', hero);
-    console.log('Content ref:', contentRef?.current);
-    console.log('Overlay ref:', overlayBgRef?.current);
-    console.log('Bg ref:', bgRef?.current);
-    console.log('Scroll ref:', scrollRef?.current);
     
     // Create the scroll overlap effect similar to Studio X
     // Since hero is fixed, we use the body as trigger
     ScrollTrigger.create({
       trigger: document.body,
       start: 'top top',
-      end: 'bottom top',
+      end: 'bottom bottom',
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        console.log('Scroll progress:', progress);
         
         // Scale and fade content based on scroll progress
         if (contentRef?.current) {
+          const scale = 1 - (progress * 0.3);
+          const opacity = 1 - (progress * 0.8);
           gsap.set(contentRef.current, {
-            scale: 1 - (progress * 0.4),
-            opacity: 1 - (progress * 1.5),
-            y: progress * 150,
+            scale: scale,
+            opacity: opacity,
+            transformOrigin: 'center center'
           });
         }
 
-        // Darken overlay as content scrolls over
+        // Fade overlay background
         if (overlayBgRef?.current) {
+          const opacity = 1 - (progress * 0.5);
           gsap.set(overlayBgRef.current, {
-            opacity: 0.72 + (progress * 0.28),
+            opacity: opacity
           });
         }
 
-        // Subtle background parallax
+        // Parallax effect on background
         if (bgRef?.current) {
+          const y = progress * 100;
           gsap.set(bgRef.current, {
-            y: progress * 40,
-            scale: 1 + (progress * 0.1),
+            y: -y
           });
         }
 
-        // Hide scroll indicator quickly
+        // Parallax on scroll element
         if (scrollRef?.current) {
+          const y = progress * 50;
           gsap.set(scrollRef.current, {
-            opacity: 1 - (progress * 3),
+            y: -y
           });
         }
       },
       onEnter: () => {
-        console.log('Hero overlap effect activated');
+        // Hero overlap effect activated
       },
       onLeave: () => {
-        console.log('Hero overlap effect completed');
+        // Hero overlap effect completed
       }
     });
 

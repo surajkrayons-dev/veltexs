@@ -12,8 +12,6 @@ import Marquee from '../components/sections/Marquee';
 import ScrollReel from '../components/sections/ScrollReel';
 import { VDivider } from '../components/sections/VShape';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function HomePage({ navRef }) {
   useEffect(() => {    
     const sections = [

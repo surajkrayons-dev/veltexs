@@ -2,8 +2,6 @@ import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 /**
  * A full-width "reel" strip between sections — shows a large scrolling
  * horizontal text to add visual energy and break up vertical rhythm.

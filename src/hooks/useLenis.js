@@ -3,8 +3,6 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 export function useLenis() {
   useEffect(() => {
     const lenis = new Lenis({
