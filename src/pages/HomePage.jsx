@@ -40,18 +40,20 @@ export default function HomePage({ navRef }) {
   }, []);
 
   return (
-    <PageWrapper bg="#0a0a0a">
+    <>
       <Hero navRef={navRef} />
-      <Marquee speed={35} invert={true} />
-      <VDivider fromColor="#0a0a0a" toColor="#f5f0e8" />
-      <About />
-      <VDivider fromColor="#f5f0e8" toColor="#0a0a0a" flip />
-      <Work />
-      <ScrollReel text="VELTEX" bg="#0a0a0a" color="#fff" />
-      <VDivider fromColor="#0a0a0a" toColor="#f5f0e8" />
-      <Process />
-      <Marquee speed={45} invert={false} />
-      <Contact />
-    </PageWrapper>
+      <PageWrapper bg="#0a0a0a" className="relative z-[20] pt-[100vh]">
+        <Marquee speed={35} invert={true} />
+        <VDivider fromColor="#0a0a0a" toColor="#f5f0e8" />
+        <About />
+        <VDivider fromColor="#f5f0e8" toColor="#0a0a0a" flip />
+        <Work />
+        <ScrollReel text="VELTEX" bg="#0a0a0a" color="#fff" />
+        <VDivider fromColor="#0a0a0a" toColor="#f5f0e8" />
+        <Process />
+        <Marquee speed={45} invert={false} />
+        <Contact />
+      </PageWrapper>
+    </>
   );
 }

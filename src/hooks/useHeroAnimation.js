@@ -5,12 +5,12 @@ import { gsap } from 'gsap';
  * Master hero entrance animation
  * Handles: V SVG draw → text stagger reveal → nav fade-in
  */
-export function useHeroAnimation({ overlayRef, vPathRef, titleCharsRef, eyebrowRef, subRef, navRef, scrollRef }) {
+export function useHeroAnimation({ overlayRef, vPathRef, vTextRef, titleCharsRef, eyebrowRef, subRef, navRef, scrollRef }) {
   useEffect(() => {
     if (!overlayRef?.current) return;
 
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.2 });
+      const tl = gsap.timeline({ delay: 0.5 }); // Increased delay from 0.2 to 0.5
 
       // 1. Draw the V stroke
       if (vPathRef?.current) {
@@ -21,9 +21,15 @@ export function useHeroAnimation({ overlayRef, vPathRef, titleCharsRef, eyebrowR
 
         tl.to(vPathRef.current, {
           strokeDashoffset: 0,
-          duration: 1.6,
+          duration: 2.5, // Increased from 1.6 to 2.5 seconds
           ease: 'power3.inOut',
-        });
+        })
+        .to(vTextRef?.current, {
+          opacity: 0.5,
+          visibility: 'visible',
+          duration: 0.8,
+          ease: 'power2.out',
+        }, '-=1.5'); // Start text animation while V is still drawing
       }
 
       // 2. Fade out overlay
@@ -31,7 +37,7 @@ export function useHeroAnimation({ overlayRef, vPathRef, titleCharsRef, eyebrowR
         overlayRef.current,
         {
           opacity: 0,
-          duration: 0.8,
+          duration: 1.2, // Increased from 0.8 to 1.2 seconds
           ease: 'power2.out',
           onComplete: () => {
             if (overlayRef.current) {
@@ -39,7 +45,7 @@ export function useHeroAnimation({ overlayRef, vPathRef, titleCharsRef, eyebrowR
             }
           },
         },
-        '-=0.3'
+        '-=0.5' // Changed from -=0.3 to -=0.5 for better overlap
       );
 
       // 3. Eyebrow

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 
-export default function PageWrapper({ children, bg = '#f5f0e8' }) {
+export default function PageWrapper({ children, bg = '#f5f0e8', className = '' }) {
   const wrapRef = useRef(null);
   const location = useLocation();
 
@@ -21,5 +21,5 @@ export default function PageWrapper({ children, bg = '#f5f0e8' }) {
     return () => ctx.revert();
   }, [location.pathname, bg]);
 
-  return <main ref={wrapRef} className="relative min-h-screen" role="main">{children}</main>;
+  return <main ref={wrapRef} className={`relative min-h-screen ${className}`} role="main">{children}</main>;
 }

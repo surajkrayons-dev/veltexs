@@ -116,34 +116,39 @@ export default function Nav({ navRef }) {
           perspective: '1000px',
         }}
       >
-        {/* Menu Card Overlay */}
+        {/* Menu Card Overlay - Enhanced 3D Style */}
         {menuOpen && (
           <div
             ref={menuCardRef}
-            className="w-full max-w-[500px] bg-white/95 backdrop-blur-[32px] border border-white/20 rounded-[32px] p-8 shadow-[0_40px_100px_rgba(0,0,0,0.4)] flex flex-col gap-8 origin-bottom"
-            style={{ transformStyle: 'preserve-3d' }}
+            className="w-full max-w-[500px] bg-white/20 backdrop-blur-xl border-2 border-white/40 rounded-[32px] p-4 shadow-[0_20px_80px_rgba(255,255,255,0.15)] flex flex-col gap-3 origin-bottom z-[9998]"
+            style={{
+              transformStyle: 'preserve-3d',
+              perspective: '1000px',
+              transform: 'translateY(-2px) scale(1.02)',
+              boxShadow: '0 16px 64px rgba(255,255,255,0.15), inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.2)',
+            }}
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-1">
               {PRIMARY_LINKS.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => go(link.href)}
-                  className="nav-stagger-item group flex justify-between items-center py-4 border-b border-black/5 text-left transition-all duration-300 hover:translate-x-3 hover:rotate-y-5 hover:pl-4 last:border-0 outline-none"
+                  className="nav-stagger-item group flex justify-between items-center py-1 border-b border-white/20 text-left transition-all duration-300 hover:translate-x-3 hover:rotate-y-5 hover:pl-4 last:border-0 outline-none"
                   style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <span className="font-serif text-[clamp(0.75rem,2vw,1.5rem)] font-medium text-[#1a1a1a] transition-colors group-hover:text-[#d44b1e]">
+                  <span className="font-serif text-[clamp(1.1rem,2.2vw,1.8rem)] font-medium text-white transition-colors group-hover:text-white/90">
                     {link.label}
                   </span>
-                  <span className="text-[1.5rem] text-[#d44b1e] opacity-0 -translate-x-6 transition-all group-hover:opacity-100 group-hover:translate-x-0">↗</span>
+                  <span className="text-[1.3rem] text-white/80 opacity-0 -translate-x-6 transition-all group-hover:opacity-100 group-hover:translate-x-0">↗</span>
                 </button>
               ))}
             </div>
-            <div className="flex flex-wrap gap-x-8 gap-y-4 nav-stagger-item">
+            <div className="flex flex-wrap gap-x-5 gap-y-1 nav-stagger-item pt-1 border-t border-white/20">
               {SECONDARY_LINKS.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => go(link.href)}
-                  className="font-sans text-[0.85rem] font-semibold text-[#666] tracking-widest uppercase hover:text-[#1a1a1a] transition-all duration-300 hover:scale-105 outline-none"
+                  className="font-sans text-[0.75rem] font-semibold text-white/70 tracking-widest uppercase hover:text-white/90 transition-all duration-300 hover:scale-105 outline-none"
                 >
                   {link.label}
                 </button>
@@ -168,10 +173,27 @@ export default function Nav({ navRef }) {
             </div>
           </button>
 
-          {/* Main Navigation Pill */}
+          {/* Main Navigation Pill - Enhanced 3D Studio X Style */}
           <div
-            className="pointer-events-auto flex items-center justify-between bg-[rgba(59,57,55,0.65)] backdrop-blur-xl border border-white/10 rounded-full h-[46px] sm:h-[50px] shadow-[0_4px_30px_rgba(0,0,0,0.15)] px-2 pl-6 sm:px-3 sm:pl-8 transition-all duration-300 hover:rotate-x-6 hover:-translate-y-2"
-            style={{ transformStyle: 'preserve-3d', perspective: '500px' }}
+            className="pointer-events-auto flex items-center justify-between bg-white/20 backdrop-blur-xl border-2 border-white/40 rounded-full h-[46px] sm:h-[50px] shadow-[0_8px_32px rgba(255,255,255,0.1)] px-2 pl-6 sm:px-3 sm:pl-8 transition-all duration-500"
+            style={{
+              transformStyle: 'preserve-3d',
+              perspective: '1000px',
+              transform: 'translateY(-2px) scale(1.02)',
+              boxShadow: '0 16px 64px rgba(255,255,255,0.15), inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.2)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px) scale(1.03)';
+              e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.25)';
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)';
+              e.currentTarget.style.boxShadow = '0 20px 80px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)';
+              e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.2)';
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.4)';
+              e.currentTarget.style.boxShadow = '0 16px 64px rgba(255,255,255,0.15), inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.2)';
+            }}
           >
             <button onClick={() => setMenuOpen(!menuOpen)} className="flex items-center gap-[10px] h-full outline-none group">
               <div className="flex flex-col gap-[4px] w-[18px]">

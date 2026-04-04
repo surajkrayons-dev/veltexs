@@ -1,19 +1,36 @@
 import React, { useRef, useEffect } from 'react';
 import { useHeroAnimation } from '../../hooks/useHeroAnimation';
 import { useHeroParallax } from '../../hooks/useScrollAnimations';
+import { useHeroOverlap } from '../../hooks/useHeroOverlap';
 import { VBackgroundPattern } from './VShape';
-import { Canvas } from '@react-three/fiber';
-import VShape3D from '../three/VShape3D';
 
 export default function Hero({ navRef }) {
   const overlayRef = useRef(null);
   const vPathRef = useRef(null);
+  const vTextRef = useRef(null);
   const bgRef = useRef(null);
   const eyebrowRef = useRef(null);
   const subRef = useRef(null);
   const scrollRef = useRef(null);
   const titleRef = useRef(null);
   const charsRef = useRef([]);
+  const heroRef = useRef(null);
+  const contentRef = useRef(null);
+  const overlayBgRef = useRef(null);
+
+  // Ensure overlay is visible on mount
+  useEffect(() => {
+    if (overlayRef.current) {
+      overlayRef.current.style.display = 'flex';
+      overlayRef.current.style.opacity = '1';
+    }
+    // Hide text initially - multiple approaches
+    if (vTextRef.current) {
+      vTextRef.current.style.opacity = '0';
+      vTextRef.current.setAttribute('opacity', '0');
+      vTextRef.current.style.visibility = 'hidden';
+    }
+  }, []);
 
   // Split title into chars
   useEffect(() => {
@@ -50,6 +67,7 @@ export default function Hero({ navRef }) {
   useHeroAnimation({
     overlayRef,
     vPathRef,
+    vTextRef,
     titleCharsRef: charsRef,
     eyebrowRef,
     subRef,
@@ -59,6 +77,9 @@ export default function Hero({ navRef }) {
 
   // Parallax on bg
   useHeroParallax(bgRef);
+
+  // Overlap effect on scroll
+  useHeroOverlap({ heroRef, contentRef, overlayBgRef, bgRef, scrollRef });
 
   return (
     <>
@@ -79,6 +100,7 @@ export default function Hero({ navRef }) {
             strokeLinejoin="round"
           />
           <text
+            ref={vTextRef}
             x="140"
             y="180"
             textAnchor="middle"
@@ -87,8 +109,8 @@ export default function Hero({ navRef }) {
             fontSize="11"
             letterSpacing="8"
             fontWeight="400"
-            opacity="0.5"
             dy="-20"
+            style={{ opacity: 0 }}
           >
             VELTEX
           </text>
@@ -96,7 +118,7 @@ export default function Hero({ navRef }) {
       </div>
 
       {/* Hero Section */}
-      <section className="relative w-full h-screen overflow-hidden bg-[#0a0a0a] flex items-center justify-center" id="hero">
+      <section ref={heroRef} className="fixed inset-0 w-full h-screen overflow-hidden bg-[#0a0a0a] flex items-center justify-center z-[5]" id="hero">
         {/* Background image with parallax */}
         <div
           ref={bgRef}
@@ -105,22 +127,13 @@ export default function Hero({ navRef }) {
         />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/55 via-[#0a0a0a]/25 to-[#0a0a0a]/72 z-[1]" aria-hidden="true" />
-
-        {/* 3D Background – uses VShape3D with delta, no warnings */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Canvas camera={{ position: [0, 0, 5], fov: 45 }} gl={{ alpha: true, powerPreference: 'high-performance' }}>
-            <ambientLight intensity={0.5} />
-            <pointLight position={[10, 10, 10]} />
-            <VShape3D color="#d44b1e" position={[0, 0, 0]} rotationSpeed={0.5} />
-          </Canvas>
-        </div>
+        <div ref={overlayBgRef} className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/55 via-[#0a0a0a]/25 to-[#0a0a0a]/72 z-[1]" aria-hidden="true" />
 
         {/* Subtle V background pattern */}
         <VBackgroundPattern color="#fff" opacity={0.06} />
 
         {/* Content */}
-        <div className="relative z-[2] text-center px-8 max-w-[1100px]">
+        <div ref={contentRef} className="relative z-[2] text-center px-8 max-w-[1100px]">
           <p
             ref={eyebrowRef}
             className="font-sans text-[0.75rem] font-medium tracking-[0.25em] uppercase text-white/60 mb-8 opacity-0"
