@@ -146,10 +146,10 @@ export default function Nav({ navRef }) {
                   className="nav-stagger-item group flex justify-between items-center py-1 border-b border-white/20 text-left transition-all duration-300 hover:translate-x-3 hover:rotate-y-5 hover:pl-4 last:border-0 outline-none"
                   style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <span className="font-serif text-[clamp(1.1rem,2.2vw,1.8rem)] font-medium text-white transition-colors group-hover:text-white/90">
+                  <span className="font-sans text-xl font-bold text-black transition-colors group-hover:text-black/90">
                     {link.label}
                   </span>
-                  <span className="text-[1.3rem] text-white/80 opacity-0 -translate-x-6 transition-all group-hover:opacity-100 group-hover:translate-x-0">↗</span>
+                  <span className="text-[1.3rem] text-black/80 opacity-0 -translate-x-6 transition-all group-hover:opacity-100 group-hover:translate-x-0">↗</span>
                 </button>
               ))}
             </div>
@@ -158,7 +158,7 @@ export default function Nav({ navRef }) {
                 <button
                   key={link.href}
                   onClick={() => go(link.href)}
-                  className="font-sans text-[0.75rem] font-semibold text-white/70 tracking-widest uppercase hover:text-white/90 transition-all duration-300 hover:scale-105 outline-none"
+                  className="font-sans text-[0.75rem] font-semibold text-black/70 tracking-widest uppercase hover:text-black/90 transition-all duration-300 hover:scale-105 outline-none"
                 >
                   {link.label}
                 </button>
@@ -196,7 +196,7 @@ export default function Nav({ navRef }) {
 
           {/* Main Navigation Pill - Enhanced 3D Studio X Style */}
           <div
-            className="pointer-events-auto flex items-center justify-between bg-white/20 backdrop-blur-xl border-2 border-white/40 rounded-full h-[46px] sm:h-[50px] shadow-[0_8px_32px rgba(255,255,255,0.1)] px-2 pl-6 sm:px-3 sm:pl-8 transition-all duration-500"
+            className="pointer-events-auto flex items-center justify-between bg-white/45 backdrop-blur-2xl border-2  border-white/90 rounded-full h-[46px] sm:h-[50px] shadow-[0_8px_32px rgba(255,255,255,0.1)] px-2 pl-6  sm:pl-8 transition-all duration-500"
             style={{
               transformStyle: 'preserve-3d',
               perspective: '1000px',
@@ -218,10 +218,10 @@ export default function Nav({ navRef }) {
           >
             <button onClick={() => setMenuOpen(!menuOpen)} className="flex items-center gap-[10px] h-full outline-none group">
               <div className="flex flex-col gap-[4px] w-[18px]">
-                <span className={`block h-[1px] bg-white transition-all duration-400 ease-out ${menuOpen ? 'translate-y-[2.5px] rotate-45 w-[18px]' : 'w-[18px]'}`} />
-                <span className={`block h-[1px] bg-white transition-all duration-400 ease-out ${menuOpen ? '-translate-y-[2.5px] -rotate-45 w-[18px]' : 'w-[18px]'}`} />
+                <span className={`block h-[1px] bg-black transition-all duration-400 ease-out ${menuOpen ? 'translate-y-[2.5px] rotate-45 w-[18px]' : 'w-[18px]'}`} />
+                <span className={`block h-[1px] bg-black transition-all duration-400 ease-out ${menuOpen ? '-translate-y-[2.5px] -rotate-45 w-[18px]' : 'w-[18px]'}`} />
               </div>
-              <span className="text-white text-[14px] font-sans font-medium tracking-[0.01em] pb-[1px]">{menuOpen ? 'Close' : 'Menu'}</span>
+              <span className="text-black text-[14px] font-sans font-medium tracking-[0.01em] pb-[1px]">{menuOpen ? 'Close' : 'Menu'}</span>
             </button>
             <div className="w-[80px] sm:w-[150px] transition-all duration-300" />
             <button
