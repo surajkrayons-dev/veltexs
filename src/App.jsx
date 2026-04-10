@@ -31,7 +31,7 @@ export default function App() {
         <Route path="/about"    element={<PageWrapper><AboutPage /></PageWrapper>} />
         <Route path="/services" element={<PageWrapper><ServicesPage /></PageWrapper>} />
         <Route path="/process"  element={<PageWrapper><ProcessPage /></PageWrapper>} />
-        <Route path="/contact"  element={<PageWrapper bg="#f5f0e8"><ContactPage /></PageWrapper>} />
+        <Route path="/contact"  element={<PageWrapper bg="#ffffff"><ContactPage /></PageWrapper>} />
         <Route path="/insights" element={<PageWrapper><InsightsPage /></PageWrapper>} />
       </Routes>
 

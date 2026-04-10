@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#f5f0e8] text-[#1a1a1a] py-[10rem] px-[6vw] pb-[12rem] overflow-hidden border-t border-black/8"
+      className="relative bg-[#ffffff] text-[#0f172a] py-4 px-[6vw] overflow-hidden border-t border-black/8"
       id="contact"
       aria-label="Contact Veltex"
     >
@@ -19,10 +19,10 @@ export default function Contact() {
             (Get in touch)
           </p>
 
-          <h2 className="contact-heading font-serif text-[clamp(2.5rem,4.5vw,6rem)] font-medium leading-[1.05] tracking-[-0.025em] mb-12 text-[#1a1a1a]">
+          <h2 className="contact-heading font-serif text-[clamp(2.5rem,4.5vw,6rem)] font-medium leading-[1.05] tracking-[-0.025em] mb-12 text-[#0f172a]">
             For project enquiries,
             <br />
-            <em className="italic font-normal text-[#d44b1e]">collaborations,</em>
+            <em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] via-[#00aaff] to-[#8cc63f] drop-shadow-sm pr-2 py-1">collaborations,</em>
             <br />
             or joining the studio.
           </h2>
@@ -30,19 +30,19 @@ export default function Contact() {
           <div className="contact-actions flex items-center gap-4 flex-wrap">
             <a
               href="mailto:iamdevsingh123@gmail.com"
-              className="contact-submit-btn inline-flex items-center gap-2 font-sans text-[0.9rem] font-medium text-white bg-[#d44b1e] px-9 py-4 rounded-full border-none cursor-pointer transition-all duration-300 hover:bg-[#e85c2a] hover:-translate-y-[2px] tracking-wide outline-none"
+              className="contact-submit-btn inline-flex items-center gap-2 font-sans text-[0.9rem] font-medium text-white bg-gradient-to-r from-[#0066cc] to-[#00aaff] px-9 py-4 rounded-full border-none cursor-pointer transition-all duration-300 hover:from-[#00aaff] hover:to-[#8cc63f] hover:-translate-y-[2px] tracking-wide outline-none shadow-[0_4px_16px_rgba(0,170,255,0.3)] hover:shadow-[0_8px_24px_rgba(140,198,63,0.4)]"
               aria-label="Send an enquiry email to Veltex"
               id="contact-enquiry-btn"
             >
               Send an enquiry
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </a>
 
             <a
               href="https://portfolio-one-theta-4m2dytpi73.vercel.app/"
-              className="contact-submit-btn inline-flex items-center gap-2 font-sans text-[0.9rem] font-medium text-white bg-[#1a1a1a] px-9 py-4 rounded-full border-none cursor-pointer transition-all duration-300 hover:bg-[#333] hover:-translate-y-[2px] tracking-wide outline-none"
+              className="contact-submit-btn inline-flex items-center gap-2 font-sans text-[0.9rem] font-medium text-white bg-[#8cc63f] px-9 py-4 rounded-full border-none cursor-pointer transition-all duration-300 hover:bg-[#a3d858] hover:-translate-y-[2px] tracking-wide outline-none shadow-[0_4px_16px_rgba(109,198,67,0.3)]"
               aria-label="Book a discovery call with Veltex"
               id="contact-call-btn"
               target="_blank"
@@ -64,7 +64,7 @@ export default function Contact() {
                 <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#666] mb-1.5">
                   {item.label}
                 </p>
-                <p className="font-sans text-[0.9rem] font-normal text-[#1a1a1a]">
+                <p className="font-sans text-[0.9rem] font-normal text-[#0f172a]">
                   {item.value}
                 </p>
               </div>

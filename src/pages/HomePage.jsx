@@ -13,21 +13,21 @@ import ScrollReel from '../components/sections/ScrollReel';
 import { VDivider } from '../components/sections/VShape';
 
 export default function HomePage({ navRef }) {
-  useEffect(() => {    
+  useEffect(() => {
     const sections = [
-      { id: '#hero',    bg: '#0a0a0a' },
-      { id: '#about',   bg: '#f5f0e8' },
-      { id: '#work',    bg: '#0a0a0a' },
-      { id: '#process', bg: '#f5f0e8' },
-      { id: '#contact', bg: '#f5f0e8' },
+      { id: '#hero', bg: '#0b162c' },
+      { id: '#about', bg: '#ffffff' },
+      { id: '#work', bg: '#0b162c' },
+      { id: '#process', bg: '#ffffff' },
+      { id: '#contact', bg: '#ffffff' },
     ];
 
     const triggers = sections.map(({ id, bg }) => {
       return ScrollTrigger.create({
         trigger: id,
-        start: 'top 55%', 
+        start: 'top 55%',
         end: 'bottom 55%',
-        onEnter:     () => gsap.to('body', { backgroundColor: bg, duration: 0.9, ease: 'power2.out', overwrite: 'auto' }),
+        onEnter: () => gsap.to('body', { backgroundColor: bg, duration: 0.9, ease: 'power2.out', overwrite: 'auto' }),
         onEnterBack: () => gsap.to('body', { backgroundColor: bg, duration: 0.9, ease: 'power2.out', overwrite: 'auto' }),
       });
     });
@@ -40,9 +40,9 @@ export default function HomePage({ navRef }) {
   return (
     <>
       <Hero navRef={navRef} />
-      <PageWrapper bg="#0a0a0a" className="relative z-[20] pt-[100vh]">
+      <PageWrapper bg="#0b162c" className="relative z-[20] pt-[100vh]">
         <Marquee speed={35} invert={true} />
-        <VDivider fromColor="#0a0a0a" toColor="#f5f0e8" />
+        <VDivider fromColor="#0b162c" toColor="#ffffff" />
         <About />
         <Work />
         <ScrollReel text="VELTEX" bg="#0a0a0a" color="#fff" />

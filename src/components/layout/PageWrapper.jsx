@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 
-export default function PageWrapper({ children, bg = '#f5f0e8', className = '' }) {
+export default function PageWrapper({ children, bg = '#ffffff', className = '' }) {
   const wrapRef = useRef(null);
   const location = useLocation();
 

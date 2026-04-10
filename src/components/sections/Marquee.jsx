@@ -1,14 +1,16 @@
 import React from 'react';
 
 const ITEMS = [
-  'Brand Identity',
-  'Motion Design',
-  'Digital Experience',
-  'Spatial Design',
-  'Campaign Strategy',
-  'UI · UX Systems',
-  'Creative Direction',
-  'Visual Storytelling',
+  'Brand Strategy',
+  'Integrated Campaigns',
+  'Digital & Social',
+  'Paid Media',
+  'Content Marketing',
+  'PR & Earned Media',
+  'Outdoor & Print',
+  'Influencer',
+  'Events & Activations',
+  'Performance Marketing'
 ];
 
 export default function Marquee({ speed = 40, invert = false }) {
@@ -17,9 +19,8 @@ export default function Marquee({ speed = 40, invert = false }) {
 
   return (
     <div
-      className={`relative z-[2] flex overflow-hidden py-6 select-none border-t border-b ${
-        invert ? 'bg-[#0a0a0a] border-white/5' : 'bg-[#f5f0e8] border-black/5'
-      }`}
+      className={`relative z-[2] flex overflow-hidden py-6 select-none border-t border-b ${invert ? 'bg-[#0b162c] border-white/5' : 'bg-[#ffffff] border-black/5'
+        }`}
       aria-hidden="true"
     >
       <div
@@ -32,9 +33,8 @@ export default function Marquee({ speed = 40, invert = false }) {
         {doubled.map((item, i) => (
           <span
             key={i}
-            className={`inline-flex items-center gap-8 font-sans text-[0.75rem] font-medium tracking-[0.2em] uppercase px-10 whitespace-nowrap ${
-              invert ? 'text-white/35' : 'text-[#1a1a1a]/35'
-            }`}
+            className={`inline-flex items-center gap-8 font-sans text-[0.75rem] font-medium tracking-[0.2em] uppercase px-10 whitespace-nowrap ${invert ? 'text-white/35' : 'text-[#0f172a]/35'
+              }`}
           >
             {item}
             <span className="w-1 h-1 rounded-full bg-[var(--color-accent)] inline-block shrink-0" />

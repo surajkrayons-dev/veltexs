@@ -87,7 +87,7 @@ export function VBackgroundPattern({ color = '#fff', opacity = 0.04 }) {
 /**
  * V-shaped clip-path SVG divider between sections
  */
-export function VDivider({ fromColor = '#f5f0e8', toColor = '#0a0a0a', flip = false }) {
+export function VDivider({ fromColor = '#ffffff', toColor = '#0b162c', flip = false }) {
   return (
     <div
       className="relative h-[100px] overflow-hidden z-[5] -mt-[1px]"

@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
  * Master hero entrance animation - CLEAN VERSION
  * Handles: V SVG draw -> text stagger reveal -> nav fade-in
  */
-export function useHeroAnimation({ overlayRef, vPathRef, vTextRef, titleCharsRef, eyebrowRef, subRef, navRef, scrollRef }) {
+export function useHeroAnimation({ overlayRef, logoRef, titleCharsRef, eyebrowRef, subRef, navRef, scrollRef }) {
   useEffect(() => {
     // Check if overlay is hidden, if so, don't run animation
     if (overlayRef?.current?.style?.display === 'none') {
@@ -17,24 +17,16 @@ export function useHeroAnimation({ overlayRef, vPathRef, vTextRef, titleCharsRef
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.5 });
 
-      // 1. Draw the V stroke - CLEAN VERSION
-      if (vPathRef?.current) {
-        gsap.set(vPathRef.current, {
-          strokeDasharray: vPathRef.current.getTotalLength?.() || 400,
-          strokeDashoffset: vPathRef.current.getTotalLength?.() || 400,
-        });
-
-        tl.to(vPathRef.current, {
-          strokeDashoffset: 0,
-          duration: 2.5,
-          ease: 'power3.inOut',
-        })
-        .to(vTextRef?.current, {
-          opacity: 0.5,
-          visibility: 'visible',
-          duration: 0.8,
-          ease: 'power2.out',
-        }, '-=1.5');
+      // 1. Logo Entrance - Elastic pop and glow
+      if (logoRef?.current) {
+        tl.fromTo(logoRef.current,
+          { scale: 0.8, opacity: 0, filter: 'blur(20px)' },
+          { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.8, ease: 'elastic.out(1, 0.75)' }
+        )
+        // Add a gentle float / breath while it holds
+        .to(logoRef.current, {
+           y: -10, duration: 1.5, ease: 'sine.inOut', yoyo: true, repeat: 1
+        }, '-=1.2');
       }
 
       // 2. Fade out overlay - NO COLOR FLASH
@@ -110,5 +102,5 @@ export function useHeroAnimation({ overlayRef, vPathRef, vTextRef, titleCharsRef
     });
 
     return () => ctx.revert();
-  }, [overlayRef, vPathRef, vTextRef, titleCharsRef, eyebrowRef, subRef, navRef, scrollRef]);
+  }, [overlayRef, logoRef, titleCharsRef, eyebrowRef, subRef, navRef, scrollRef]);
 }

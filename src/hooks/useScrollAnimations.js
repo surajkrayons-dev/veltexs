@@ -10,7 +10,7 @@ export function useHeroParallax(bgRef) {
     if (!bgRef?.current) return;
 
     const bg = bgRef.current;
-    
+
     // Enhanced parallax with rotation and scale
     gsap.to(bg, {
       scrollTrigger: {
@@ -20,14 +20,10 @@ export function useHeroParallax(bgRef) {
         scrub: 2,
         onUpdate: (self) => {
           const progress = self.progress;
-          const scale = 1 + (progress * 0.3);
           const y = progress * 100;
-          const rotation = progress * 2;
-          
+
           gsap.set(bg, {
-            scale: scale,
             y: y,
-            rotation: rotation,
             transformOrigin: 'center center',
           });
         }
@@ -83,12 +79,12 @@ export function useMagneticEffect(elementRef) {
     if (!elementRef?.current) return;
 
     const element = elementRef.current;
-    
+
     const handleMouseMove = (e) => {
       const rect = element.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      
+
       gsap.to(element, {
         x: x * 0.15,
         y: y * 0.15,
@@ -127,7 +123,7 @@ export function useFloatingAnimation(elementRef, amplitude = 10, frequency = 2) 
     if (!elementRef?.current) return;
 
     const element = elementRef.current;
-    
+
     gsap.to(element, {
       y: `+=${amplitude}`,
       duration: frequency,
@@ -147,10 +143,10 @@ export function useParticleExplosion(containerRef, particleCount = 20) {
     if (!containerRef?.current) return;
 
     const container = containerRef.current;
-    
+
     const createParticles = () => {
       const particles = [];
-      
+
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -165,15 +161,15 @@ export function useParticleExplosion(containerRef, particleCount = 20) {
           top: 50%;
           transform: translate(-50%, -50%);
         `;
-        
+
         container.appendChild(particle);
         particles.push(particle);
-        
+
         // Animate each particle
         const angle = (Math.PI * 2 * i) / particleCount;
         const distance = 100 + Math.random() * 100;
         const duration = 1 + Math.random() * 1;
-        
+
         gsap.to(particle, {
           x: Math.cos(angle) * distance,
           y: Math.sin(angle) * distance,
@@ -190,7 +186,7 @@ export function useParticleExplosion(containerRef, particleCount = 20) {
 
     // Trigger particle explosion
     const timer = setTimeout(createParticles, 2000);
-    
+
     return () => {
       clearTimeout(timer);
       // Clean up any remaining particles
@@ -239,10 +235,10 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
           rotationX: -45,
           scale: 0.8,
           duration: 1.5,
-          stagger: { 
-            each: 0.08, 
+          stagger: {
+            each: 0.08,
             from: 'start',
-            onComplete: function() {
+            onComplete: function () {
               // Individual word bounce
               gsap.to(this.targets(), {
                 scale: 1.1,
@@ -270,7 +266,7 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
           const finalValue = stat.innerText;
           const isPlus = finalValue.includes('+');
           const numValue = parseFloat(finalValue.replace(/[^0-9.]/g, ''));
-          
+
           // Entrance animation
           gsap.from(stat, {
             y: 80,
@@ -286,7 +282,7 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
               toggleActions: 'play none none reverse',
             },
           });
-          
+
           // Counting animation
           gsap.from(stat, {
             scrollTrigger: {
@@ -298,18 +294,18 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
             innerHTML: 0,
             duration: 2.5,
             ease: 'power2.out',
-            onUpdate: function() {
+            onUpdate: function () {
               const progress = this.progress;
               const currentValue = Math.floor(numValue * progress);
               stat.innerText = currentValue + (isPlus ? '+' : '');
-              
+
               // Glow effect during counting
               const glow = 20 + (progress * 10);
               gsap.set(stat, {
                 filter: `drop-shadow(0 0 ${glow}px rgba(212, 75, 30,${0.3 + progress * 0.3})`,
               });
             },
-            onComplete: function() {
+            onComplete: function () {
               stat.innerText = finalValue;
               // Final pulse
               gsap.to(stat, {
@@ -347,12 +343,12 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
       // CLEAN IMAGE ANIMATION - Simple and Impressive
       if (imageRef?.current) {
         // Initial state - image is hidden
-        gsap.set(imageRef.current, { 
+        gsap.set(imageRef.current, {
           opacity: 0,
           scale: 0.8,
           y: 30,
         });
-        
+
         // Clean entrance animation
         gsap.to(imageRef.current, {
           opacity: 1,
@@ -367,7 +363,7 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
             toggleActions: 'play none none reverse',
           },
         });
-        
+
         // Subtle parallax effect
         gsap.to(imageRef.current, {
           scrollTrigger: {
@@ -430,7 +426,7 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
             ease: 'power2.out',
           });
         });
-        
+
         container.addEventListener('mouseleave', () => {
           gsap.to(container, {
             scale: 1,
@@ -478,147 +474,170 @@ export function useWorkAnimation({ sectionRef }) {
       // Work label animation
       const workLabel = sectionRef.current.querySelector('.work-label');
       if (workLabel) {
-        gsap.from(workLabel, {
-          y: -30,
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 90%',
-            end: 'bottom 10%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(workLabel, 
+          { y: -30, opacity: 0, scale: 0.8 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 90%',
+              end: 'bottom 10%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
       // Headline words animation
       const headlineWords = sectionRef.current.querySelectorAll('.work-headline-word');
       if (headlineWords.length) {
-        gsap.from(headlineWords, {
-          y: '150%',
-          opacity: 0,
-          scale: 0.8,
-          duration: 1.2,
-          stagger: 0.08,
-          ease: 'back.out(1.3)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(headlineWords, 
+          { y: '150%', opacity: 0, scale: 0.8 },
+          {
+            y: '0%',
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            stagger: 0.08,
+            ease: 'back.out(1.3)',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 80%',
+              end: 'bottom 20%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
       // Description paragraph animation
       const workDesc = sectionRef.current.querySelector('.work-description');
       if (workDesc) {
-        gsap.from(workDesc, {
-          y: 40,
-          opacity: 0,
-          scale: 0.95,
-          duration: 1.0,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: workDesc,
-            start: 'top 85%',
-            end: 'bottom 15%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(workDesc, 
+          { y: 40, opacity: 0, scale: 0.95 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.0,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: workDesc,
+              start: 'top 85%',
+              end: 'bottom 15%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
       // Main project gallery animation
       const projectGallery = sectionRef.current.querySelector('.work-project-gallery');
       if (projectGallery) {
-        gsap.from(projectGallery, {
-          y: 60,
-          opacity: 0,
-          scale: 0.9,
-          duration: 1.2,
-          ease: 'back.out(1.3)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-            end: 'bottom 30%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(projectGallery, 
+          { y: 60, opacity: 0, scale: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.2,
+            ease: 'back.out(1.3)',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 70%',
+              end: 'bottom 30%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
       // Background image animation - SIMPLE VERSION
       const bgImage = sectionRef.current.querySelector('.work-bg-image');
       if (bgImage) {
-        // Simple entrance animation
-        gsap.from(bgImage, {
-          opacity: 0,
-          scale: 1.05,
-          duration: 1.0,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
-            end: 'top 50%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(bgImage, 
+          { opacity: 0, scale: 1.05 },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1.0,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 70%',
+              end: 'top 50%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
       // Thumbnail animations
       const thumbnails = sectionRef.current.querySelectorAll('.work-thumbnail');
       if (thumbnails.length) {
-        gsap.from(thumbnails, {
-          x: -50,
-          opacity: 0,
-          scale: 0.8,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: 'back.out(1.3)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 65%',
-            end: 'bottom 35%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(thumbnails, 
+          { x: -50, opacity: 0, scale: 0.8 },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'back.out(1.3)',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 65%',
+              end: 'bottom 35%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
       // Content animations (right side)
       const projectContent = sectionRef.current.querySelector('.work-project-content');
       if (projectContent) {
-        gsap.from(projectContent, {
-          x: 50,
-          opacity: 0,
-          scale: 0.9,
-          duration: 1.0,
-          ease: 'back.out(1.3)',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 65%',
-            end: 'bottom 35%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(projectContent, 
+          { x: 50, opacity: 0, scale: 0.9 },
+          {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.0,
+            ease: 'back.out(1.3)',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 65%',
+              end: 'bottom 35%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
       // CTA button animation
       const ctaButton = sectionRef.current.querySelector('.work-cta-button');
       if (ctaButton) {
-        gsap.from(ctaButton, {
-          y: 30,
-          opacity: 0,
-          scale: 0.9,
-          duration: 0.8,
-          ease: 'back.out(1.5)',
-          scrollTrigger: {
-            trigger: ctaButton,
-            start: 'top 85%',
-            end: 'bottom 15%',
-            toggleActions: 'play none none reverse',
-          },
-        });
+        gsap.fromTo(ctaButton, 
+          { y: 30, opacity: 0, scale: 0.9 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: 'back.out(1.5)',
+            scrollTrigger: {
+              trigger: ctaButton,
+              start: 'top 85%',
+              end: 'bottom 15%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
       }
 
     }, sectionRef);
@@ -646,7 +665,7 @@ export function useProcessAnimation({ sectionRef }) {
 
     const ctx = gsap.context(() => {
       console.log('Process animation initialized');
-      
+
       // Process label animation
       const processLabel = sectionRef.current.querySelector('.process-label');
       console.log('Process label found:', processLabel);

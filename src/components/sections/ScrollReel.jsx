@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
  * A full-width "reel" strip between sections — shows a large scrolling
  * horizontal text to add visual energy and break up vertical rhythm.
  */
-export default function ScrollReel({ text = 'VELTEX', bg = '#0a0a0a', color = '#fff' }) {
+export default function ScrollReel({ text = 'VELTEX', bg = '#f50b0bff', color = '#f50b0bff' }) {
   const trackRef = useRef(null);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function ScrollReel({ text = 'VELTEX', bg = '#0a0a0a', color = '#
 
   return (
     <div
-      className="relative z-[2] overflow-hidden py-12 sm:py-8"
+      className="relative z-[2] overflow-hidden py-4"
       style={{ backgroundColor: bg }}
       aria-hidden="true"
     >
@@ -50,4 +50,3 @@ export default function ScrollReel({ text = 'VELTEX', bg = '#0a0a0a', color = '#
     </div>
   );
 }
-

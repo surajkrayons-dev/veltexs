@@ -1,26 +1,37 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const STEPS = [
   {
-    num: '01', title: 'Discover & Define',
-    desc: 'We begin by immersing ourselves in your world — understanding your audience, your competition, and the opportunity ahead. Every assumption is challenged until we find the true brief beneath the brief.',
+    num: "01",
+    title: "DISCOVER",
+    heading:"Audience & market intelligence",
+    desc: "We map your audience's journey, motivations, and media habits — not to confirm assumptions, but to challenge them.",
   },
   {
-    num: '02', title: 'Strategy & Vision',
-    desc: 'With clarity comes direction. We establish the strategic foundations that will guide every creative decision — from positioning and narrative to the visual language that sets you apart.',
+    num: "02",
+    title: "DEFINE",
+    heading:"Objectives & message hierarchy",
+    desc: "We set clear, measurable objectives and build the message architecture your campaign will live and die by.",
   },
   {
-    num: '03', title: 'Design & Motion',
-    desc: "Here, ideas take form. We craft brands, platforms, and environments that don’t just look exceptional — they move, engage, and perform. Every detail is deliberate.",
+    num: "03",
+    title: "DESIGN",
+    heading:"Creative & channel strategy",
+    desc: "Channel mix, creative concept, and sequencing — engineered to build momentum, not scatter attention.",
   },
   {
-    num: '04', title: 'Build & Refine',
-    desc: 'Precision execution across every touchpoint. We build at the intersection of craft and technology, iterating until the experience is seamless and the quality is undeniable.',
+    num: "04",
+    title: "DEPLOY",
+    heading:"Synchronised execution",
+    desc: "Assets, timing, and messaging go live in sync — across every relevant platform, without contradiction.",
   },
   {
-    num: '05', title: 'Launch & Evolve',
-    desc: "A launch is a beginning, not an end. We stay involved — measuring, learning, and evolving your experience so it continues to outperform as markets shift.",
+    num: "05",
+    title: "OPTIMISE",
+    heading:"Performance & iteration",
+    desc: "We track cross-channel results against shared goals and continuously refine spend, creative, and messaging.",
   },
 ];
 
@@ -30,39 +41,170 @@ export default function ProcessPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
     const ctx = gsap.context(() => {
-      gsap.from('.process-page-heading', {
-        y: 70, opacity: 0, duration: 1.1, ease: 'power4.out', delay: 0.1,
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero animations
+      gsap.fromTo('.process-label',
+        { opacity: 0, y: -20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.2 }
+      );
+
+      gsap.utils.toArray('.process-page-line').forEach((line, index) => {
+        gsap.fromTo(line,
+          { y: 60, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 0.3 + (index * 0.15) }
+        );
       });
-      gsap.from('.process-page-step', {
-        y: 40, opacity: 0, duration: 0.8,
-        stagger: 0.13, ease: 'power3.out', delay: 0.3,
+
+      // Timeline line drawing
+      gsap.fromTo('.process-progress-line', 
+        { height: '0%' },
+        {
+          height: '100%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.process-timeline-container',
+            start: 'top 60%',
+            end: 'bottom 60%',
+            scrub: true,
+          }
+        }
+      );
+
+      // Steps stagger animation
+      gsap.utils.toArray('.process-page-step').forEach((step, index) => {
+        
+        // Dot activation
+        const dot = step.querySelector('.process-dot');
+        const glow = step.querySelector('.process-glow');
+        if(dot) {
+          gsap.to(dot, {
+            backgroundColor: '#00aaff',
+            scale: 1.5,
+            scrollTrigger: {
+              trigger: step,
+              start: 'top 60%',
+              toggleActions: 'play none none reverse',
+            }
+          });
+          gsap.to(glow, {
+            opacity: 1,
+            scale: 2,
+            scrollTrigger: {
+              trigger: step,
+              start: 'top 60%',
+              toggleActions: 'play none none reverse',
+            }
+          });
+        }
+
+        // Content slide in
+        const content = step.querySelector('.step-content-box');
+        gsap.fromTo(content,
+          { opacity: 0, x: 50, scale: 0.95 },
+          { 
+            opacity: 1, x: 0, scale: 1, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: {
+              trigger: step,
+              start: 'top 75%',
+            }
+          }
+        );
+
+        // Huge background number floating
+        const bgNum = step.querySelector('.bg-number');
+        gsap.fromTo(bgNum, 
+          { y: -30, opacity: 0 },
+          { 
+             y: 0, opacity: 0.05, duration: 1.5, ease: 'power2.out',
+             scrollTrigger: { trigger: step, start: 'top 80%' }
+          }
+        );
+        
+        // Optional subtle parallax on bgNum
+        gsap.to(bgNum, {
+           y: 50,
+           scrollTrigger: {
+             trigger: step,
+             start: 'top bottom',
+             end: 'bottom top',
+             scrub: true
+           }
+        });
+
       });
+
     }, containerRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <div ref={containerRef} className="pt-44 pb-32 px-[6vw] bg-[#f5f0e8] min-h-screen text-[#1a1a1a] sm:pt-32">
-      <div className="max-w-[1200px] mb-32 sm:mb-20">
-        <p className="font-sans text-[0.7rem] tracking-[0.3em] uppercase text-[#666] mb-10">(Our Process)</p>
-        <h1 className="process-page-heading font-serif text-[clamp(2.5rem,5.5vw,7rem)] font-medium leading-[1.05] tracking-tighter text-[#1a1a1a]">
-          How we turn ambition into
-          <br /><em className="italic font-normal text-[#d44b1e]">lasting impact.</em>
+    <div ref={containerRef} className="pt-28 pb-20 px-[6vw] bg-[#ffffff] min-h-screen text-[#0f172a] sm:pt-20">
+      {/* Hero Section */}
+      <div className="max-w-[1200px] mb-16 sm:mb-12 pl-8 md:pl-0">
+        <p className="process-label font-sans text-[0.7rem] tracking-[0.3em] uppercase text-[#0066cc] mb-6 font-bold">(Our Methodology)</p>
+        <h1 className="font-serif text-[clamp(2.5rem,5.5vw,6rem)] font-medium leading-[1.05] tracking-tighter text-[#0f172a] max-w-[1000px]">
+          <div className="overflow-hidden pb-1">
+            <span className="process-page-line inline-block will-change-transform">One strategy.</span>
+          </div>
+          <div className="overflow-hidden pb-1">
+            <span className="process-page-line inline-block will-change-transform">
+              <em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] via-[#00aaff] to-[#8cc63f] pr-2">Every channel.</em>
+            </span>
+          </div>
+          <div className="overflow-hidden pb-2">
+            <span className="process-page-line inline-block will-change-transform">
+              <em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#00aaff] to-[#8cc63f] pr-2">No exceptions.</em>
+            </span>
+          </div>
         </h1>
+        <p className="process-page-line mt-6 font-sans text-[clamp(1.1rem,1.4vw,1.3rem)] font-light leading-[1.7] text-[#555] max-w-[700px]">
+          Integrated Marketing Communication is how we work — not a service we upsell. From the first brief to the final campaign report, everything we do is built on one unified foundation.
+        </p>
       </div>
 
-      <div className="flex flex-col gap-0" role="list">
-        {STEPS.map((step) => (
-          <div key={step.num} className="process-page-step grid grid-cols-[100px_1fr] gap-12 items-start py-20 border-t border-black/10 sm:grid-cols-1 sm:gap-6 sm:py-12 last:border-b last:border-black/10" role="listitem">
-            <div className="font-serif text-[5rem] font-bold leading-none text-black/5 tracking-tighter sm:text-6xl" aria-hidden="true">{step.num}</div>
-            <div className="process-page-step-content">
-              <h2 className="font-serif text-[clamp(1.8rem,3vw,3.5rem)] font-medium leading-tight mb-8 text-[#1a1a1a]">{step.title}</h2>
-              <p className="font-sans text-xl leading-relaxed text-[#555] max-w-[700px] font-light sm:text-lg">{step.desc}</p>
+      {/* Interactive Timeline Process */}
+      <div className="process-timeline-container relative max-w-[1000px] mx-auto mt-20 pt-10">
+        {/* Background Track Line */}
+        <div className="absolute left-[39px] sm:left-[19px] top-0 bottom-0 w-[2px] bg-[#f0f0f0]" />
+        
+        {/* Animated Gradient Line filled by scroll */}
+        <div className="process-progress-line absolute left-[39px] sm:left-[19px] top-0 w-[2px] bg-gradient-to-b from-[#0066cc] via-[#00aaff] to-[#8cc63f] z-10 origin-top rounded-full" />
+
+        <div className="flex flex-col gap-32 sm:gap-24 relative z-20">
+          {STEPS.map((step, index) => (
+            <div key={step.num} className="process-page-step relative flex items-start gap-16 sm:gap-8">
+              
+              {/* Timeline Dot */}
+              <div className="relative mt-8 sm:mt-6 shrink-0 flex items-center justify-center w-[80px] sm:w-[40px]">
+                 <div className="process-glow absolute w-8 h-8 rounded-full bg-[#00aaff]/30 opacity-0 blur-md transition-opacity duration-300" />
+                 <div className="process-dot w-3 h-3 rounded-full bg-[#ccc] z-10 transition-colors duration-300" />
+              </div>
+
+              {/* Step Content */}
+              <div className="step-content-box relative flex-1 pt-4 bg-white/50 backdrop-blur-sm rounded-3xl p-10 sm:p-6 border border-black/5 shadow-[0_10px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_rgba(0,102,204,0.08)] hover:border-[#00aaff]/20 transition-all duration-500 group overflow-hidden">
+                
+                {/* Floating Huge Number */}
+                <div className="bg-number absolute -right-4 -top-8 font-serif text-[12rem] sm:text-[8rem] font-bold leading-none text-[#0066cc] opacity-5 pointer-events-none select-none tracking-tighter">
+                  {step.num}
+                </div>
+
+                <div className="relative z-10">
+                  <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] font-medium leading-tight mb-2 text-[#0f172a] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#0f172a] group-hover:to-[#0066cc] transition-colors duration-500">
+                    {step.title}
+                  </h2>
+                  <h3 className="font-sans text-[clamp(1.1rem,1.4vw,1.3rem)] font-medium leading-relaxed mb-6 text-[#00aaff]">
+                    {step.heading}
+                  </h3>
+                  <p className="font-sans text-[clamp(1rem,1.1vw,1.1rem)] leading-[1.8] text-[#555] max-w-[550px] font-light">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
 }
-
