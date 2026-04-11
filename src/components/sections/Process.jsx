@@ -43,14 +43,14 @@ export default function Process() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#ffffff] text-[#0f172a] py-4 px-[6vw]  overflow-hidden"
+      className="relative bg-[#ffffff] text-[#0f172a] py-8 px-[6vw]  overflow-hidden"
       id="process"
       aria-label="Our process"
     >
       <VBackgroundPattern color="#0f172a" opacity={0.02} />
 
       <div className="">
-        <p className="process-label font-sans text-[0.7rem] font-medium tracking-[0.3em] uppercase text-[#666] mb-5">(Our Process)</p>
+        <p className="process-label font-sans text-[1rem] font-bold tracking-[0.3em] uppercase text-[#666] py-4">(Our Process)</p>
         <h2 className="process-headline font-serif text-[clamp(2.8rem,4.5vw,5rem)] font-medium leading-[1.2] tracking-[-0.025em] max-w-[900px]">
           One strategy. <span className="italic font-normal text-[#0066cc]">Every</span> channel. <span className="italic font-normal text-[#0066cc]">No exceptions.</span>
         </h2>
@@ -63,7 +63,7 @@ export default function Process() {
         {STEPS.map((step, index) => (
           <div
             key={step.num}
-            className="process-step grid grid-cols-[80px_1fr] gap-12 items-start py-5 border-t border-black/12 sm:grid-cols-1 sm:gap-6 last:border-b last:border-black/12"
+            className="process-step grid  gap-12 items-start py-3 border-t border-black/12 grid-cols-1 sm:gap-6 "
             role="listitem"
             aria-label={`Step ${step.num}: ${step.title}`}
           >

@@ -15,37 +15,59 @@ export function useHeroAnimation({ overlayRef, logoRef, titleCharsRef, eyebrowRe
     if (!overlayRef?.current) return;
 
     let ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.5 });
+      const tl = gsap.timeline({ delay: 0.1 });
 
-      // 1. Logo Entrance - Elastic pop and glow
+      // 1. Creative Intro Sequence - Fast Halo Flash
+      tl.to('#intro-halo', {
+        opacity: 1,
+        scale: 2.5,
+        duration: 1.5,
+        ease: 'power4.out'
+      });
+
+      // 2. Logo Entrance - Snappier elastic reveal
       if (logoRef?.current) {
         tl.fromTo(logoRef.current,
-          { scale: 0.8, opacity: 0, filter: 'blur(20px)' },
-          { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.8, ease: 'elastic.out(1, 0.75)' }
-        )
-        // Add a gentle float / breath while it holds
-        .to(logoRef.current, {
-           y: -10, duration: 1.5, ease: 'sine.inOut', yoyo: true, repeat: 1
-        }, '-=1.2');
+          { scale: 0.8, opacity: 0, filter: 'blur(30px) brightness(1.5)', skewX: 5 },
+          { 
+            scale: 1, 
+            opacity: 1, 
+            filter: 'blur(0px) brightness(1)', 
+            skewX: 0,
+            duration: 1.2, 
+            ease: 'expo.out' // Switched from elastic to expo for smoother, faster feel
+          },
+          '0.1'
+        );
+
+        // Very brief float to avoid "dead" air without sticking too long
+        tl.to(logoRef.current, {
+          y: -8,
+          duration: 0.8,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: 1
+        }, '-=0.4');
       }
 
-      // 2. Fade out overlay - NO COLOR FLASH
+      // 3. Ultra-Smooth Transition - Reveal Hero Faster
       tl.to(
         overlayRef.current,
         {
           opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out',
+          scale: 1.05,
+          duration: 1,
+          ease: 'power3.inOut',
           onComplete: () => {
             if (overlayRef.current) {
               overlayRef.current.style.display = 'none';
             }
           },
         },
-        '-=0.5'
+        '-=0.6' // Faster overlap
       );
 
-      // 3. Eyebrow
+      // 4. Eyebrow
       if (eyebrowRef?.current) {
         tl.fromTo(
           eyebrowRef.current,

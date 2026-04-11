@@ -20,14 +20,14 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#ffffff] text-[#0f172a]  px-[6vw]  overflow-hidden"
+      className="relative bg-[#ffffff] text-[#0f172a]  px-[6vw] py-8 overflow-hidden"
       id="about"
       aria-label="About Veltex"
     >
       {/* Subtle V bg */}
       <VBackgroundPattern color="#0f172a" opacity={0.025} className="v-bg-pattern" />
 
-      <p className="about-label font-sans text-[0.7rem] font-medium tracking-[0.3em] uppercase text-[#666] py-4 mb-5">(About us)</p>
+      <p className="about-label font-sans text-[1rem] font-bold tracking-[0.3em] uppercase text-[#666]">(About us)</p>
 
       {/* Large editorial headline */}
       <h2 className="font-serif text-[clamp(2.5rem,5vw,6rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[#0f172a] max-w-[80vw]">
@@ -49,7 +49,7 @@ export default function About() {
       </h2>
 
       {/* Subheading paragraph */}
-      <p className="about-description font-sans text-[clamp(1rem,1.2vw,1.125rem)] leading-[1.75] text-[#555] max-w-[600px] mt-10 font-light">
+      <p className="about-description font-sans text-[clamp(1rem,1.2vw,1.125rem)] leading-[1.75] text-[#555] mt-6 mb-10 font-light">
         Veltex is a full-service <span className="font-semibold text-[#0066cc]">Integrated Marketing Agency</span> that combines strategic rigour with fearless creativity because we believe the best marketing doesn't just look good. It solves real problems, shifts real perceptions, and grows real revenue.
       </p>
 
@@ -96,7 +96,7 @@ export default function About() {
       </div>
 
       {/* Full-width bottom border line */}
-      <div className="mt-16 border-t border-black/15" aria-hidden="true" />
+      <div className="mt-8" aria-hidden="true" />
     </section>
   );
 }

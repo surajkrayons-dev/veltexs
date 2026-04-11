@@ -11,13 +11,13 @@ export default function AboutPage() {
       gsap.registerPlugin(ScrollTrigger);
 
       // Hero animations
-      gsap.fromTo('.about-label', 
+      gsap.fromTo('.about-label',
         { opacity: 0, y: -20 },
         { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.2 }
       );
 
       gsap.utils.toArray('.about-page-line').forEach((line, index) => {
-        gsap.fromTo(line, 
+        gsap.fromTo(line,
           { y: 80, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 0.4 + (index * 0.15) }
         );
@@ -25,9 +25,9 @@ export default function AboutPage() {
 
       // Scatter images
       gsap.utils.toArray('.about-page-scatter-img').forEach((img, index) => {
-        gsap.fromTo(img, 
+        gsap.fromTo(img,
           { opacity: 0, y: 60, scale: 0.9 },
-          { 
+          {
             opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out',
             scrollTrigger: { trigger: img, start: 'top 85%' }
           }
@@ -48,9 +48,9 @@ export default function AboutPage() {
 
       // Sections reveal
       gsap.utils.toArray('.reveal-section').forEach((section) => {
-        gsap.fromTo(section, 
+        gsap.fromTo(section,
           { opacity: 0, y: 50 },
-          { 
+          {
             opacity: 1, y: 0, duration: 1, ease: 'power3.out',
             scrollTrigger: { trigger: section, start: 'top 80%' }
           }
@@ -62,8 +62,8 @@ export default function AboutPage() {
         const finalValue = stat.innerText;
         const isPlus = finalValue.includes('+');
         const numValue = parseFloat(finalValue.replace(/[^0-9.]/g, ''));
-        
-        gsap.fromTo(stat, 
+
+        gsap.fromTo(stat,
           { innerHTML: 0 },
           {
             scrollTrigger: {
@@ -75,28 +75,28 @@ export default function AboutPage() {
             duration: 1.8,
             ease: 'power2.out',
             snap: { innerHTML: 1 },
-            onUpdate: function() {
+            onUpdate: function () {
               stat.innerText = Math.floor(this.targets()[0].innerHTML) + (isPlus ? '+' : '');
             },
-            onComplete: function() {
+            onComplete: function () {
               stat.innerText = finalValue;
             }
-        });
+          });
       });
 
       // Value cards stagger
-      gsap.fromTo('.value-card', 
+      gsap.fromTo('.value-card',
         { opacity: 0, y: 40 },
-        { 
+        {
           opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: '.values-grid', start: 'top 75%' }
         }
       );
 
       // Expertise pills
-      gsap.fromTo('.expertise-pill', 
+      gsap.fromTo('.expertise-pill',
         { opacity: 0, scale: 0.8 },
-        { 
+        {
           opacity: 1, scale: 1, stagger: 0.05, duration: 0.6, ease: 'back.out(1.5)',
           scrollTrigger: { trigger: '.expertise-container', start: 'top 80%' }
         }
@@ -135,7 +135,7 @@ export default function AboutPage() {
     <div ref={containerRef} className="pt-28 pb-16 px-[6vw] bg-[#ffffff] min-h-screen text-[#0f172a] sm:pt-20">
       {/* Hero Section */}
       <div className="max-w-[1200px] mb-12 sm:mb-10">
-        <div className="about-label font-sans text-[0.7rem] tracking-[0.3em] uppercase text-[#0066cc] mb-6 font-bold">(About Us)</div>
+        <div className="about-label font-sans text-[1rem] tracking-[0.3em] uppercase text-[#0066cc] mb-6 font-bold">(About Us)</div>
         <h1 className="font-serif text-[clamp(2rem,4vw,4.5rem)] font-medium leading-[1.1] tracking-[-0.01em] text-[#0f172a] max-w-[1100px]">
           <div className="overflow-hidden pb-1">
             <span className="about-page-line inline-block will-change-transform">Veltex is a full-service integrated marketing</span>
@@ -179,7 +179,7 @@ export default function AboutPage() {
       </div>
 
       {/* What Defines Us & Core Philosophy */}
-      <div className="grid grid-cols-2 gap-20 mb-20 sm:grid-cols-1 sm:gap-12">
+      <div className="grid  gap-20 mb-20 grid-cols-1 sm:gap-12">
         {/* Defines Us */}
         <div className="reveal-section bg-[#f8f9fa] p-12 rounded-3xl border border-black/5 hover:border-[#0066cc]/20 transition-colors duration-500">
           <h2 className="font-serif text-4xl mb-6 text-[#0f172a]">What Defines Us</h2>
@@ -213,14 +213,14 @@ export default function AboutPage() {
       </div>
 
       {/* Our Values - 4 Column Grid */}
-      <div className="reveal-section mb-24">
+      <div className="reveal-section ">
         <h2 className="font-serif text-[clamp(2.5rem,4vw,4rem)] mb-12 text-center">
           Our <em className="italic text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] to-[#8cc63f]">Values</em>
         </h2>
-        <div className="values-grid grid grid-cols-4 gap-6 sm:grid-cols-1 md:grid-cols-2">
+        <div className="values-grid grid  gap-6 grid-cols-1 md:grid-cols-2">
           {values.map((v, i) => (
             <div key={i} className="value-card p-8 rounded-2xl bg-white border border-[#eaeaea] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,102,204,0.1)] transition-all duration-500 hover:-translate-y-2 group">
-              <div className="text-[2.5rem] font-serif text-[#0066cc]/20 mb-4 group-hover:text-[#8cc63f]/50 transition-colors font-bold">0{i + 1}</div>
+              <div className="text-[2.5rem] font-serif text-[#0066cc]/50 mb-4 group-hover:text-[#8cc63f]/50 transition-colors font-bold">0{i + 1}</div>
               <h3 className="font-sans text-xl font-bold text-[#0f172a] mb-4">{v.title}</h3>
               <p className="font-sans text-[#666] leading-relaxed text-sm">{v.desc}</p>
             </div>
@@ -229,17 +229,17 @@ export default function AboutPage() {
       </div>
 
       {/* Stats Section */}
-      <div className="reveal-section mb-32 border-t border-b border-black/10 py-16">
-        <div className="grid grid-cols-4 gap-8 sm:grid-cols-2 sm:gap-10 text-center">
+      <div className="reveal-section border-t border-b border-black/10 py-16">
+        <div className="grid  gap-8 grid-cols-2 sm:gap-10 text-center">
           {[
             { num: '12+', label: 'Years of mastery' },
             { num: '340', label: 'Projects delivered' },
-            { num: '18',  label: 'Markets reached' },
+            { num: '18', label: 'Markets reached' },
             { num: '60+', label: 'Brand clients' },
           ].map((s) => (
             <div key={s.label} className="about-stat-item">
               <div className="about-stat-number font-serif text-[clamp(3rem,4vw,4rem)] font-bold text-[#0f172a] mb-2 tracking-tighter">{s.num}</div>
-              <div className="font-sans text-[0.7rem] tracking-[0.2em] uppercase text-[#0066cc] font-medium">{s.label}</div>
+              <div className="font-sans text-[1rem] tracking-[0.2em] uppercase text-[#0066cc] font-medium">{s.label}</div>
             </div>
           ))}
         </div>
@@ -247,7 +247,7 @@ export default function AboutPage() {
 
       {/* Our Expertise */}
       <div className="reveal-section expertise-container py-16 border-t border-b border-[#eaeaea] text-center">
-        <h2 className="font-sans text-[0.8rem] tracking-[0.3em] uppercase text-[#666] mb-12 font-bold">(Our Expertise)</h2>
+        <h2 className="font-sans text-[1rem] tracking-[0.3em] uppercase text-[#666] mb-12 font-bold">(Our Expertise)</h2>
         <div className="flex flex-wrap justify-center gap-4 max-w-[900px] mx-auto">
           {expertise.map((skill, i) => (
             <div

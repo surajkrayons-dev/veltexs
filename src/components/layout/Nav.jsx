@@ -87,8 +87,8 @@ export default function Nav({ navRef }) {
   const isHome = location.pathname === '/';
   const isProjects = location.pathname === '/projects';
   // const ctaLabel = isProjects ? 'Contact' : isHome ? 'Contact' : 'Projects';
-  const ctaLabel = isProjects ? 'Projects' : 'Contact';
-  const ctaHref = isProjects ? '/contact' : "";
+  const ctaLabel = isProjects ? 'Contact' : 'Contact';
+  const ctaHref = isProjects ? '/contact' : "/contact";
 
   useEffect(() => {
     if (!isHome && navRef.current) {
@@ -250,9 +250,10 @@ export default function Nav({ navRef }) {
                   transform: 'rotateY(0deg)'
                 }}
               >
-                <svg viewBox="0 0 32 32" className="w-[32px] h-auto text-[#0f172a] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                {/* <svg viewBox="0 0 32 32" className="w-[32px] h-auto text-[#0f172a] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                   <path d="M6 8L16 26L26 8" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                </svg>
+                </svg> */}
+                <img src="/vLogo.png" className="w-[32px] h-auto drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"></img>
               </div>
 
               {/* Back face - 3D effect */}
@@ -307,7 +308,7 @@ export default function Nav({ navRef }) {
             <div className="w-[80px] sm:w-[150px] transition-all duration-300" />
             <button
               onClick={() => go(ctaHref)}
-              className="h-[36px] sm:h-[40px] px-[26px] sm:px-[30px] bg-[#0066cc] text-white rounded-full font-sans text-[13.5px] sm:text-[14px] font-semibold tracking-[0.02em] hover:bg-[#00aaff] transition-all duration-300 hover:scale-105 pb-[1px] shadow-[0_4px_16px_rgba(0,170,255,0.3)]"
+              className="h-[36px] sm:h-[40px] px-[26px] sm:px-[30px] bg-gradient-to-r from-[#0066cc] to-[#8cc63f] text-white rounded-full font-sans text-[13.5px] sm:text-[14px] font-semibold tracking-[0.02em] hover:bg-[#00aaff] transition-all duration-300 hover:scale-105 pb-[1px] shadow-[0_4px_16px_rgba(0,170,255,0.3)]"
               style={{
                 transformStyle: 'preserve-3d',
                 transform: 'translateZ(0px)',

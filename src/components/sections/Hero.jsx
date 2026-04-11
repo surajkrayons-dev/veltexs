@@ -67,19 +67,32 @@ export default function Hero({ navRef }) {
 
   return (
     <>
-      {/* V Intro Overlay */}
+      {/* V Intro Overlay with Studio Mesh Background */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[9999] bg-[#ffffff] flex items-center justify-center pointer-events-none"
+        className="fixed inset-0 z-[9999] bg-[#ffffff] flex items-center justify-center pointer-events-none overflow-hidden"
         aria-hidden="true"
         id="v-intro-overlay"
         style={{ display: 'flex' }}
       >
-        <img 
+        {/* Animated Mesh Gradient Background - Creative Addition */}
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#0066cc]/10 blur-[120px] rounded-full animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#8cc63f]/10 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+        </div>
+
+        {/* Premium Noise / Grain Texture */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
+          style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }} />
+
+        {/* Cinematic Brand Halo */}
+        <div id="intro-halo" className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#0066cc]/20 via-[#00aaff]/10 to-[#8cc63f]/20 blur-[100px] opacity-0 scale-50" />
+
+        <img
           ref={logoRef}
           src={veltexLogo}
           alt="Veltex Logo"
-          className="w-[min(45vw,250px)] h-auto object-contain drop-shadow-2xl"
+          className="w-[min(50vw,600px)] h-auto object-contain drop-shadow-2xl relative z-10"
           style={{ opacity: 0 }}
         />
       </div>
@@ -101,7 +114,7 @@ export default function Hero({ navRef }) {
         <div ref={contentRef} className="relative z-[2] text-center px-8 max-w-[1100px]">
           <p
             ref={eyebrowRef}
-            className="font-sans text-[0.85rem] font-bold tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] to-[#8cc63f] mb-8 opacity-0 drop-shadow-[0_2px_2px_rgba(255,255,255,1)]"
+            className="font-sans text-[0.85rem] font-bold tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] to-[#8cc63f] mb-8  opacity-0 drop-shadow-[0_2px_2px_rgba(255,255,255,1)]"
             aria-label="Veltex — Digital Design Studio"
           >
             Veltex &nbsp;—&nbsp; Empowering Every Brand to Shine

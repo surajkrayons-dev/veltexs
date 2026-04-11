@@ -74,14 +74,14 @@ export default function ServicesPage() {
       gsap.registerPlugin(ScrollTrigger);
 
       // 1. Top Hero Heading
-      gsap.fromTo('.services-hero-heading', 
+      gsap.fromTo('.services-hero-heading',
         { y: 120, opacity: 0, scale: 0.95 },
         { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: 'expo.out', delay: 0.1 }
       );
-      
+
       // 2. Headings that appear on scroll down
       gsap.utils.toArray('.services-scroll-heading').forEach((heading) => {
-        gsap.fromTo(heading, 
+        gsap.fromTo(heading,
           { y: 120, opacity: 0, scale: 0.95 },
           { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: 'expo.out', scrollTrigger: { trigger: heading, start: 'top 85%' } }
         );
@@ -93,15 +93,15 @@ export default function ServicesPage() {
         const numbers = container.querySelectorAll('.service-huge-number');
 
         // Graceful massive slide-up for row
-        gsap.fromTo(items, 
+        gsap.fromTo(items,
           { y: 100, opacity: 0 },
-          { 
-            y: 0, 
-            opacity: 1, 
-            duration: 1.2, 
-            stagger: 0.2, 
-            ease: 'expo.out', 
-            scrollTrigger: { trigger: container, start: 'top 75%' } 
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: 'expo.out',
+            scrollTrigger: { trigger: container, start: 'top 75%' }
           }
         );
 
@@ -121,11 +121,11 @@ export default function ServicesPage() {
 
   return (
     <div ref={containerRef} className="bg-[#0b162c] min-h-screen font-sans selection:bg-[#00aaff] selection:text-white">
-      
+
       {/* SECTION 1: WHAT WE DO (Hero & Dark Theme) */}
       <div className="pt-28 pb-16 px-[6vw] text-white sm:pt-20">
         <div className="max-w-[1200px] mb-12 sm:mb-10">
-          <p className="font-sans text-[0.7rem] tracking-[0.3em] uppercase text-[#00aaff] mb-6">(What We Do)</p>
+          <p className="font-sans text-[1rem] font-bold tracking-[0.3em] uppercase text-[#00aaff] mb-6">(What We Do)</p>
           <h1 className="services-hero-heading font-serif text-[clamp(2.5rem,5.5vw,6rem)] font-medium leading-[1.05] tracking-tighter text-white shrink-0">
             We deliver end-to-end
             <br /><em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] to-[#8cc63f]">integrated solutions.</em>
@@ -137,7 +137,7 @@ export default function ServicesPage() {
 
         <div className="services-list-container flex flex-col gap-0" role="list">
           {CORE_SERVICES.map((s) => (
-            <div key={s.num} className="services-page-item grid grid-cols-[100px_1fr] gap-12 items-start py-10 border-t border-white/10 sm:grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-white/10" role="listitem">
+            <div key={s.num} className="services-page-item grid  gap-12 items-start py-10 border-t border-white/10 grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-white/10" role="listitem">
               <div className="service-huge-number font-serif text-[5rem] font-bold leading-none tracking-tighter sm:text-6xl text-opacity-10 opacity-10" aria-hidden="true">{s.num}</div>
               <div className="services-page-item-content">
                 <h2 className="font-serif text-[clamp(1.8rem,3vw,3.5rem)] font-medium leading-tight mb-8 text-white">{s.title}</h2>
@@ -156,7 +156,7 @@ export default function ServicesPage() {
       {/* SECTION 2: THE PROBLEM (Light Theme) */}
       <div className="py-20 px-[6vw] bg-[#ffffff] text-[#0f172a] border-y border-black/5">
         <div className="max-w-[1200px] mb-16 sm:mb-10">
-          <p className="font-sans text-[0.7rem] tracking-[0.3em] uppercase text-[#ff4444] mb-6 font-bold">(What We Solve)</p>
+          <p className="font-sans text-[1rem] tracking-[0.3em] uppercase text-[#ff4444] mb-6 font-bold">(What We Solve)</p>
           <h2 className="services-scroll-heading font-serif text-[clamp(2.5rem,4.5vw,5rem)] font-medium leading-[1.05] tracking-tighter text-[#0f172a] shrink-0">
             Most brands don’t fail
             <br />due to lack of ideas —
@@ -166,8 +166,8 @@ export default function ServicesPage() {
 
         <div className="services-list-container flex flex-col gap-0" role="list">
           {THE_PROBLEM.map((s) => (
-            <div key={s.num} className="services-page-item grid grid-cols-[100px_1fr] gap-12 items-start py-10 border-t border-black/10 sm:grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-black/10" role="listitem">
-              <div className="service-huge-number font-serif text-[5rem] font-bold leading-none tracking-tighter sm:text-6xl text-black/5" aria-hidden="true">{s.num}</div>
+            <div key={s.num} className="services-page-item grid gap-12 items-start py-10 border-t border-black/10 grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-black/10" role="listitem">
+              <div className="service-huge-number font-serif text-[5rem] font-bold leading-none tracking-tighter sm:text-6xl text-black/30" aria-hidden="true">{s.num}</div>
               <div className="services-page-item-content">
                 <h3 className="font-serif text-[clamp(1.8rem,3vw,3.5rem)] font-medium leading-tight mb-8 text-[#0f172a]">{s.title}</h3>
                 <p className="font-sans text-xl leading-relaxed text-[#555] max-w-[700px] mb-8 font-light sm:text-lg sm:mb-6">{s.desc}</p>
@@ -185,7 +185,7 @@ export default function ServicesPage() {
       {/* SECTION 3: WHAT YOU GET (Brand Blue Theme) */}
       <div className="py-20 px-[6vw] bg-[#0066cc] text-white">
         <div className="max-w-[1200px] mb-16 sm:mb-10">
-          <p className="font-sans text-[0.7rem] tracking-[0.3em] uppercase text-[#8cc63f] mb-6 font-bold">(What You Get)</p>
+          <p className="font-sans text-[1rem] tracking-[0.3em] uppercase text-[#8cc63f] mb-6 font-bold">(What You Get)</p>
           <h2 className="services-scroll-heading font-serif text-[clamp(2.5rem,5vw,5.5rem)] font-medium leading-[1.05] tracking-tighter text-white shrink-0">
             We don’t just deliver campaigns.
             <br />We build a <em className="italic font-normal text-[#8cc63f]">growth system</em>.
@@ -194,7 +194,7 @@ export default function ServicesPage() {
 
         <div className="services-list-container flex flex-col gap-0" role="list">
           {THE_SYSTEM.map((s) => (
-            <div key={s.num} className="services-page-item grid grid-cols-[100px_1fr] gap-12 items-start py-10 border-t border-white/20 sm:grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-white/20" role="listitem">
+            <div key={s.num} className="services-page-item grid gap-12 items-start py-10 border-t border-white/20 grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-white/20" role="listitem">
               <div className="service-huge-number font-serif text-[5rem] font-bold leading-none tracking-tighter sm:text-6xl text-white/20" aria-hidden="true">{s.num}</div>
               <div className="services-page-item-content">
                 <h3 className="font-serif text-[clamp(1.8rem,3vw,3.5rem)] font-medium leading-tight mb-8 text-white">{s.title}</h3>

@@ -41,13 +41,16 @@ export default function HomePage({ navRef }) {
     <>
       <Hero navRef={navRef} />
       <PageWrapper bg="#0b162c" className="relative z-[20] pt-[100vh]">
-        <Marquee speed={35} invert={true} />
-        <VDivider fromColor="#0b162c" toColor="#ffffff" />
+        <Marquee />
+        {/* <VDivider fromColor="#0b162c" toColor="#ffffff" /> */}
         <About />
+        <Marquee />
+
         <Work />
         <ScrollReel text="VELTEX" bg="#0a0a0a" color="#fff" />
         <Process />
-        <Marquee speed={45} invert={false} />
+        <Marquee />
+
         <Contact />
       </PageWrapper>
     </>

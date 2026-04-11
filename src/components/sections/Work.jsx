@@ -6,36 +6,37 @@ import { useWorkAnimation } from '../../hooks/useScrollAnimations';
 const PROJECTS = [
   {
     id: 1,
-    title: 'Horizon',
-    subtitle: 'Brand Identity',
-    desc: 'A complete brand overhaul for a global architecture firm expanding into Southeast Asia. Identity, motion, and digital presence.',
+    title: 'Strategy ',
+    subtitle: 'IMC Strategy & Planning',
+    desc: 'A customised integrated marketing communication plan — audience intelligence, objective mapping, message architecture, channel sequencing — built specifically for your industry, market, and growth stage. This is where every campaign begins.',
     thumb: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=200&auto=format&fit=crop&q=80',
     bg: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80',
   },
   {
-    id: 2,
-    title: 'Obsidian',
-    subtitle: 'Digital Experience',
-    desc: 'An immersive web platform for a luxury real-estate developer merging high-res visuals with scroll-driven narratives.',
-    thumb: 'https://images.unsplash.com/photo-1493663284031-b7e3aaa4d70b?w=200&auto=format&fit=crop&q=80',
-    bg: 'https://images.unsplash.com/photo-1493663284031-b7e3aaa4d70b?w=1600&auto=format&fit=crop&q=80',
-  },
-  {
-    id: 3,
-    title: 'Lume',
-    subtitle: 'Spatial Design',
-    desc: 'Flagship retail environment for a contemporary lifestyle brand. Experiential design bridging physical and digital worlds.',
-    thumb: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&auto=format&fit=crop&q=80',
-    bg: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&auto=format&fit=crop&q=80',
-  },
-  {
     id: 4,
-    title: 'Auris',
-    subtitle: 'Motion & Campaign',
-    desc: 'A cinematic campaign for a premium audio brand blending tactile product craft with abstract motion design.',
+    title: 'Creative ',
+    subtitle: 'Campaign Execution',
+    desc: 'We develop your brand voice, tone, and creative concept — then pressure-test every asset against your core message before a single piece of content goes live. Consistency is designed in, not added later.',
     thumb: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&auto=format&fit=crop&q=80',
     bg: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&auto=format&fit=crop&q=80',
   },
+  {
+    id: 1,
+    title: 'Integration ',
+    subtitle: 'Full-Channel Integration',
+    desc: 'Social, search, display, influencer, print, outdoor, broadcast — we don’t pick favourites. We deploy the right channel mix for your audience and sequence it to build cumulative momentum across the entire campaign.',
+    thumb: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=200&auto=format&fit=crop&q=80',
+    bg: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80',
+  },
+  {
+    id: 3,
+    title: 'Campaign ',
+    subtitle: 'Creative & Messaging Alignment',
+    desc: 'From asset production to media buying to launch coordination — we manage the full execution with synchronised timing and creative across every platform, so the launch lands as one coherent brand moment.',
+    thumb: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&auto=format&fit=crop&q=80',
+    bg: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&auto=format&fit=crop&q=80',
+  },
+
 ];
 
 export default function Work() {
@@ -72,8 +73,8 @@ export default function Work() {
     tl.fromTo(labelRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, '-=0.4');
   };
 
-  const handleViewAllProjects = () => {
-    navigate('/projects');
+  const handleContact = () => {
+    navigate('/contact');
   };
 
   const proj = PROJECTS[active];
@@ -81,23 +82,17 @@ export default function Work() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#ffffff] text-[#0f172a]  "
+      className="relative bg-[#ffffff] text-[#0f172a] pt-8  "
       id="work"
       aria-label="Selected work"
     ><div className=" px-[6vw]  overflow-hidden">
-        <p className="work-label font-sans text-[0.7rem] font-medium tracking-[0.3em] uppercase text-[#666] py-4 mb-5">(Our Work)</p>
+        <p className="work-label font-sans text-[1rem] font-bold tracking-[0.3em] uppercase text-[#666] py-4 ">(Our Work)</p>
 
-        {/* Large editorial headline */}
-        <h2 className="font-serif text-[clamp(2.5rem,5vw,6rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[#0f172a] max-w-[90vw] mb-10">
-          <span className="inline-block overflow-hidden align-bottom">
-            <span ref={addWordRef} className="work-headline-word inline-block">We deliver end-to-end</span>
-          </span>{' '}
-          <span className="inline-block overflow-hidden align-bottom">
-            <span ref={addWordRef} className="work-headline-word inline-block">integrated marketing solutions —</span>
-          </span>{' '}
-          <span className="inline-block overflow-hidden align-bottom">
-            <em ref={addWordRef} className="work-headline-word italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] via-[#00aaff] to-[#8cc63f] inline-block py-1 pr-2 drop-shadow-sm">not isolated services.</em>
-          </span>
+        {/* Large editorial headline - Optimized for Fluid Wrapping */}
+        <h2 className="font-serif text-[clamp(2.2rem,5vw,6rem)] font-medium leading-[1.08] tracking-[-0.025em] text-[#0f172a] mb-10">
+          <span ref={addWordRef} className="work-headline-word inline-block mr-2">We deliver integrated marketing</span>
+          <span ref={addWordRef} className="work-headline-word inline-block mr-2">solutions —</span>
+          <em ref={addWordRef} className="work-headline-word italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] via-[#00aaff] to-[#8cc63f] inline-block py-1 pr-2 drop-shadow-sm">not isolated services.</em>
         </h2>
 
         <p className="work-description font-sans text-[clamp(0.95rem,1.2vw,1.125rem)] font-light leading-[1.75] text-[#555] max-w-[800px] mb-16">
@@ -123,7 +118,7 @@ export default function Work() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
 
         {/* Content Overlay with Enhanced Styling */}
-        <div className="absolute inset-0 flex items-center justify-between px-[8vw] md:px-[10vw]">
+        <div className="absolute inset-0 flex flex-col sm:flex-row items-center justify-between px-[8vw] md:px-[10vw] py-6 sm:py-0">
           {/* Left Side - Thumbnails */}
           <div className="flex flex-col gap-8">
             {/* Thumbnail Switcher */}
@@ -160,12 +155,12 @@ export default function Work() {
           </div>
 
           {/* Right Side - Content */}
-          <div className="work-project-content max-w-[600px] text-white space-y-8">
+          <div className="work-project-content max-w-[600px] text-white space-y-4 sm:space-y-8 sm:pt-0 pt-6">
             {/* Project Counter */}
             <div className="flex items-center gap-4">
               <div className="h-px bg-white/30 w-12" />
               <p ref={labelRef} className="font-sans text-[0.65rem] tracking-[0.3em] uppercase text-white/60 font-medium">
-                PROJECT {String(active + 1).padStart(2, '0')} OF {String(PROJECTS.length).padStart(2, '0')}
+                What We Do {String(active + 1).padStart(2, '0')} OF {String(PROJECTS.length).padStart(2, '0')}
               </p>
             </div>
 
@@ -185,10 +180,10 @@ export default function Work() {
 
             {/* View Project Button with Background Color */}
             <button
-              onClick={handleViewAllProjects}
+              onClick={handleContact}
               className="work-cta-button inline-flex items-center gap-3 font-sans text-[0.85rem] font-medium tracking-wide text-white bg-gradient-to-r from-[#0066cc] to-[#00aaff] border-none px-8 py-3 rounded-full cursor-pointer transition-all duration-300 hover:from-[#00aaff] hover:to-[#8cc63f] hover:-translate-y-1 shadow-[0_4px_16px_rgba(0,170,255,0.3)] hover:shadow-[0_8px_24px_rgba(140,198,63,0.4)]"
             >
-              View All Projects
+              Contact Us
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
                 <path d="M2 14L14 2M14 2H6M14 2V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

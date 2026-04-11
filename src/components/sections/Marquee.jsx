@@ -1,53 +1,88 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 const ITEMS = [
-  'Brand Strategy',
-  'Integrated Campaigns',
-  'Digital & Social',
-  'Paid Media',
-  'Content Marketing',
-  'PR & Earned Media',
-  'Outdoor & Print',
-  'Influencer',
-  'Events & Activations',
-  'Performance Marketing'
+  "Brand Strategy",
+  "Integrated Campaigns",
+  "Digital & Social",
+  "Paid Media",
+  "Content Marketing",
+  "PR & Earned Media",
+  "Outdoor & Print",
+  "Influencer",
+  "Events & Activations",
+  "Performance Marketing",
 ];
 
-export default function Marquee({ speed = 40, invert = false }) {
-  // Duplicate for seamless loop
-  const doubled = [...ITEMS, ...ITEMS, ...ITEMS];
+export default function Marquee({ speed = 150 }) {
+  const marqueeRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.to(marqueeRef.current, {
+        xPercent: -50,
+        ease: "none",
+        duration: speed,
+        repeat: -1,
+      });
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, [speed]);
 
   return (
     <div
-      className={`relative z-[2] flex overflow-hidden py-6 select-none border-t border-b ${invert ? 'bg-[#0b162c] border-white/5' : 'bg-[#ffffff] border-black/5'
-        }`}
+      ref={containerRef}
+      className="relative z-[2] flex overflow-hidden select-none bg-white"
       aria-hidden="true"
     >
       <div
-        className="flex shrink-0 items-center gap-0 w-max min-w-full animate-marqueeScroll will-change-transform"
-        style={{
-          animationDuration: `${speed}s`,
-          animationDirection: invert ? 'reverse' : 'normal',
-        }}
+        ref={marqueeRef}
+        className="flex shrink-0 items-center w-max will-change-transform"
       >
-        {doubled.map((item, i) => (
-          <span
-            key={i}
-            className={`inline-flex items-center gap-8 font-sans text-[0.75rem] font-medium tracking-[0.2em] uppercase px-10 whitespace-nowrap ${invert ? 'text-white/35' : 'text-[#0f172a]/35'
-              }`}
-          >
-            {item}
-            <span className="w-1 h-1 rounded-full bg-[var(--color-accent)] inline-block shrink-0" />
-          </span>
+        {doubledItems(ITEMS).map((item, i) => (
+          <div key={i} className="flex items-center shrink-0 space-x-7 px-3">
+            {/* Exact Screenshot Replica Style */}
+            <span
+              className="font-extrabold text-[clamp(1.2rem,2.5vw,1.7rem)] font-mono uppercase whitespace-nowrap"
+              style={{
+                WebkitTextStroke: '0.8px #484646fa',
+                color: 'transparent',
+                letterSpacing: '0.05em',
+                opacity: 0.7
+              }}
+            >
+              {item}
+            </span>
+
+            {/* Creative Logo Separator */}
+            <div className="relative overflow-hidden">
+              <img
+                src="/vLogo.png"
+                alt="Veltex Logo"
+                className="w-8 h-8 object-cover animate-logoPulse"
+              />
+            </div>
+          </div>
         ))}
       </div>
 
       <style>{`
-        @keyframes marqueeScroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-33.333%); }
+        @keyframes logoPulse {
+          0% { transform: scale(0.6); opacity: 0.7; }
+          50% { transform: scale(1.3); opacity: 1; }
+          100% { transform: scale(0.6); opacity: 0.7; }
+        }
+        .animate-logoPulse {
+          animation: logoPulse 3s ease-in-out infinite;
         }
       `}</style>
     </div>
   );
+}
+
+// Helper to ensure enough items for seamless loop
+function doubledItems(arr) {
+  return [...arr, ...arr, ...arr, ...arr, ...arr, ...arr];
 }
