@@ -17,41 +17,25 @@ export function useHeroAnimation({ overlayRef, logoRef, titleCharsRef, eyebrowRe
     let ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.1 });
 
-      // 1. Creative Intro Sequence - Fast Halo Flash
-      tl.to('#intro-halo', {
-        opacity: 1,
-        scale: 2.5,
-        duration: 1.5,
-        ease: 'power4.out'
-      });
-
-      // 2. Logo Entrance - Snappier elastic reveal
+      // 1. Logo Entrance - Clean appear (no rotation)
       if (logoRef?.current) {
         tl.fromTo(logoRef.current,
-          { scale: 0, rotation: -720, opacity: 0, filter: 'blur(30px) brightness(1.5)', skewX: 5 },
+          { scale: 0.7, opacity: 0, filter: 'blur(24px) brightness(1.3)' },
           {
             scale: 1,
-            rotation: 360,
             opacity: 1,
             filter: 'blur(0px) brightness(1)',
-            skewX: 0,
-            duration: 1.8,  // Increased duration for multiple rotations to look smooth
+            duration: 1.4,
             ease: 'expo.out'
           },
           '0.1'
         );
-
-        // Very brief float to avoid "dead" air without sticking too long
-        tl.to(logoRef.current, {
-          y: -8,
-          duration: 0.8,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: 1
-        }, '-=0.4');
       }
 
-      // 3. Ultra-Smooth Transition - Reveal Hero Faster
+      // 3. Hold logo on screen for 1 second before transitioning
+      tl.to({}, { duration: 1 });
+
+      // 4. Ultra-Smooth Transition - Overlay fade out
       tl.to(
         overlayRef.current,
         {
@@ -64,8 +48,7 @@ export function useHeroAnimation({ overlayRef, logoRef, titleCharsRef, eyebrowRe
               overlayRef.current.style.display = 'none';
             }
           },
-        },
-        '-=0.6' // Faster overlap
+        }
       );
 
       // 4. Eyebrow

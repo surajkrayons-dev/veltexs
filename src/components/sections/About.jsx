@@ -20,7 +20,7 @@ export default function About() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#ffffff] text-[#0f172a]  px-[6vw] py-14 overflow-hidden"
+      className="relative bg-[#ffffff] text-[#0f172a]  px-[6vw] pt-14 overflow-hidden"
       id="about"
       aria-label="About Veltex"
     >
@@ -63,7 +63,7 @@ export default function About() {
               src={aboutHomePage}
               alt="Veltex brand asset"
               loading="lazy"
-              className="w-full h-auto block"
+              className="w-full h-auto max-h-[600px] block"
             />
           </div>
         </div>
@@ -89,10 +89,10 @@ export default function About() {
           </blockquote>
 
         </div>
-        <p className="about-copy-p font-sans text-[clamp(0.95rem,1.2vw,1.125rem)] font-light leading-[1.75] text-[#555] ">
+        {/* <p className="about-copy-p font-sans text-[clamp(0.95rem,1.2vw,1.125rem)] font-light leading-[1.75] text-[#555] ">
 
           We work across industries and campaign scales - from challenger brands building their voice to established companies reclaiming their relevance. Our integrated model means you get a single agency that thinks in systems, not silos.
-        </p>
+        </p> */}
       </div>
 
       {/* Full-width bottom border line */}

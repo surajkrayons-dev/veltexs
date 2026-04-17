@@ -1,6 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import image1 from "../assets/about/1.avif"
+import image2 from "../assets/about/2.avif"
+import image3 from "../assets/about/3.avif"
+import image5 from "../assets/about/5.avif"
 
 export default function AboutPage() {
   const containerRef = useRef(null);
@@ -155,26 +159,26 @@ export default function AboutPage() {
       </div>
 
       {/* Scattered Image Collage */}
-      <div className="grid grid-cols-4 gap-4 md:grid-cols-2 md:gap-x-4 md:gap-y-12 mb-20 items-start sm:mb-16">
+      <div className="grid grid-cols-4 gap-4 md:grid-cols-2 md:gap-x-4 md:gap-y-12 mb-10 items-start sm:mb-16">
         <img
-          src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80"
+          src={image1}
           alt="Creative meeting"
           className="about-page-scatter-img col-start-1 row-start-1 w-full rounded-xl shadow-[0_10px_20px_rgba(0,0,0,0.1)] object-cover"
         />
         <img
-          src="https://images.unsplash.com/photo-1600607684527-6fb886090705?w=600&auto=format&fit=crop&q=80"
+          src={image2}
           alt="Design workspace"
           className="about-page-scatter-img col-start-2 row-start-1 row-span-2 mt-16 w-full rounded-xl shadow-[0_15px_30px_rgba(0,0,0,0.12)] object-cover md:mt-0"
         />
         <img
-          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format&fit=crop&q=80"
+          src={image3}
           alt="Strategy planning"
           className="about-page-scatter-img col-start-3 row-start-1 w-full rounded-xl shadow-[0_10px_20px_rgba(0,0,0,0.1)] object-cover md:col-start-1 md:row-start-2"
         />
         <img
-          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&auto=format&fit=crop&q=80"
+          src={image5}
           alt="Marketing analytics"
-          className="about-page-scatter-img col-start-4 row-start-1 mt-10 w-full rounded-xl shadow-[0_12px_25px_rgba(0,0,0,0.11)] object-cover md:col-start-2 md:row-start-2 md:mt-6"
+          className="about-page-scatter-img col-start-4 row-start-1 mt-10 w-full rounded-xl shadow-[0_12px_25px_rgba(0,0,0,0.11)] object-cover md:col-start-2 md:row-start-2 md:mt-0"
         />
       </div>
 

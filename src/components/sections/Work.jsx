@@ -2,6 +2,14 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useWorkAnimation } from '../../hooks/useScrollAnimations';
+import astrotring from "../../assets/work/astrotring.png"
+import goldenarc from "../../assets/work/goldenarc.png"
+import icgh from "../../assets/work/icgh.png"
+import sportrz from "../../assets/work/sportrz.png"
+import astrotringthumb from "../../assets/work/astrotringthumb.png"
+import goldenarcthumb from "../../assets/work/goldenarcthumb.png"
+import icghthumb from "../../assets/work/icghthumb.png"
+import sportrzthumb from "../../assets/work/sportrzthumb.png"
 
 const PROJECTS = [
   {
@@ -9,32 +17,36 @@ const PROJECTS = [
     title: 'Strategy ',
     subtitle: 'IMC Strategy & Planning',
     desc: 'A customised integrated marketing communication plan — audience intelligence, objective mapping, message architecture, channel sequencing — built specifically for your industry, market, and growth stage. This is where every campaign begins.',
-    thumb: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=200&auto=format&fit=crop&q=80',
-    bg: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80',
+    thumb: astrotringthumb,
+    bg: astrotring,
+    url: "https://astrotring.com/"
   },
   {
     id: 4,
     title: 'Creative ',
     subtitle: 'Campaign Execution',
     desc: 'We develop your brand voice, tone, and creative concept — then pressure-test every asset against your core message before a single piece of content goes live. Consistency is designed in, not added later.',
-    thumb: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=200&auto=format&fit=crop&q=80',
-    bg: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&auto=format&fit=crop&q=80',
+    thumb: goldenarcthumb,
+    bg: goldenarc,
+    url: "https://goldenarc.co.in/"
   },
   {
     id: 1,
     title: 'Integration ',
     subtitle: 'Full-Channel Integration',
     desc: 'Social, search, display, influencer, print, outdoor, broadcast — we don’t pick favourites. We deploy the right channel mix for your audience and sequence it to build cumulative momentum across the entire campaign.',
-    thumb: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=200&auto=format&fit=crop&q=80',
-    bg: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&auto=format&fit=crop&q=80',
+    thumb: icghthumb,
+    bg: icgh,
+    url: "https://icgh.in/"
   },
   {
     id: 3,
     title: 'Campaign ',
     subtitle: 'Creative & Messaging Alignment',
     desc: 'From asset production to media buying to launch coordination — we manage the full execution with synchronised timing and creative across every platform, so the launch lands as one coherent brand moment.',
-    thumb: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&auto=format&fit=crop&q=80',
-    bg: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&auto=format&fit=crop&q=80',
+    thumb: sportrzthumb,
+    bg: sportrz,
+    url: "https://www.sportrz.com/"
   },
 
 ];
@@ -73,9 +85,7 @@ export default function Work() {
     tl.fromTo(labelRef.current, { opacity: 0 }, { opacity: 1, duration: 0.4 }, '-=0.4');
   };
 
-  const handleContact = () => {
-    navigate('/contact');
-  };
+
 
   const proj = PROJECTS[active];
 
@@ -127,7 +137,7 @@ export default function Work() {
                 <button
                   key={project.id}
                   onClick={() => handleSwitch(index)}
-                  className={`work-thumbnail group relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-500 transform ${index === active
+                  className={`work-thumbnail group relative w-20 h-14 rounded-xl overflow-hidden border-2 transition-all duration-500 transform ${index === active
                     ? 'border-white scale-110 shadow-2xl ring-2 ring-white/20'
                     : 'border-white/20 hover:border-white/60 hover:scale-105 hover:shadow-xl'
                     }`}
@@ -180,10 +190,10 @@ export default function Work() {
 
             {/* View Project Button with Background Color */}
             <button
-              onClick={handleContact}
+              onClick={() => window.open(proj.url)}
               className="work-cta-button inline-flex items-center gap-3 font-sans text-[0.85rem] font-medium tracking-wide text-white bg-gradient-to-r from-[#0066cc] to-[#00aaff] border-none px-8 py-3 rounded-full cursor-pointer transition-all duration-300 hover:from-[#00aaff] hover:to-[#8cc63f] hover:-translate-y-1 shadow-[0_4px_16px_rgba(0,170,255,0.3)] hover:shadow-[0_8px_24px_rgba(140,198,63,0.4)]"
             >
-              Contact Us
+              View Project
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="transition-transform duration-300 group-hover:translate-x-1">
                 <path d="M2 14L14 2M14 2H6M14 2V10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

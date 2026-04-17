@@ -1,215 +1,249 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import brandImage1 from "../assets/service/afro logo.png"
+import brandImage2 from "../assets/service/Airtel-logo.png"
+import brandImage3 from "../assets/service/anon log.png"
+import brandImage4 from "../assets/service/digitantra logo.png"
+import brandImage5 from "../assets/service/drinking water logo.png"
+import brandImage6 from "../assets/service/giz logo.png"
+import brandImage7 from "../assets/service/golden logo.png"
+import brandImage8 from "../assets/service/Google-Logo-PNG-Picture.png"
+import brandImage9 from "../assets/service/gopa logo.png"
+import brandImage10 from "../assets/service/hamada logo.png"
+import brandImage11 from "../assets/service/hitech logo.png"
+import brandImage12 from "../assets/service/IIFM logo.png"
+import brandImage13 from "../assets/service/ireda logo.png"
+import brandImage14 from "../assets/service/logo.png"
+import brandImage15 from "../assets/service/logo2.png"
+import brandImage16 from "../assets/service/ministry log.png"
+import brandImage17 from "../assets/service/ministry renewable logo.png"
+import brandImage18 from "../assets/service/my account logo.png"
+import brandImage19 from "../assets/service/namami gange logo.png"
+import brandImage20 from "../assets/service/wotr logo.png"
+import brandImage21 from "../assets/service/Reliance_Jio_Logo_(October_2015).png"
+import brandImage22 from "../assets/service/SECI logo.png"
+import brandImage23 from "../assets/service/soft logo.png"
+import brandImage24 from "../assets/service/vedanta log.png"
+import brandImage25 from "../assets/service/Vi-Logo-Vector-300x300.png"
+import brandImage26 from "../assets/service/wadhwani logo.png"
 
-const CORE_SERVICES = [
-  {
-    num: '01',
-    title: 'IMC Strategy & Planning',
-    desc: 'Audience insights, messaging, and channel roadmap. We build the foundation of your entire growth ecosystem to ensure alignment before execution begins.',
-    tags: ['Audience Insights', 'Messaging Architecture', 'Channel Roadmap'],
-  },
-  {
-    num: '02',
-    title: 'Creative & Messaging Alignment',
-    desc: 'Strong brand voice and consistent storytelling. We ensure your narrative captures attention, builds trust, and translates seamlessly across every medium.',
-    tags: ['Brand Voice', 'Storytelling', 'Copywriting'],
-  },
-  {
-    num: '03',
-    title: 'Full-Channel Integration',
-    desc: 'Social, search, influencer, print, and more. We dominate everywhere your audience consumes media, synchronising touchpoints for maximum impact.',
-    tags: ['Social Media', 'SEO & SEM', 'Programmatic', 'Print & OOH'],
-  },
-  {
-    num: '04',
-    title: 'Campaign Execution & PR',
-    desc: 'Flawless production, strategic media buying, and launch management. Paired with Earned Media to amplify your brand stories organically.',
-    tags: ['Production', 'Media Buying', 'PR Outreach', 'Events'],
-  },
-  {
-    num: '05',
-    title: 'Performance Optimisation',
-    desc: 'Data-driven improvements across active campaigns. We track against shared goals and continuously refine spend, creative, and messaging to squeeze ROI.',
-    tags: ['Data Analytics', 'A/B Testing', 'ROI Tracking'],
-  },
-];
 
-const THE_PROBLEM = [
-  {
-    num: '01',
-    title: 'Common Challenges',
-    desc: 'Most brands suffer from disconnected messaging across platforms, spending money without long-term impact. Creative might look good, but if it doesn’t convert and there are multiple agencies with no coordination, the result is weak brand recall and zero clear performance measurement.',
-    tags: ['Disconnected Ads', 'Wasted Spend', 'No Coordination'],
-  },
-  {
-    num: '02',
-    title: 'What Changes With Us',
-    desc: 'We bring a unified strategy with one voice across all channels. Consistency builds trust and stronger brand recall. You get better ROI through aligned spending, purposeful creativity designed with intent, and a strict focus on real measurable business outcomes.',
-    tags: ['Unified Strategy', 'Better ROI', 'Purposeful Creativity'],
-  }
-];
 
-const THE_SYSTEM = [
-  {
-    num: '01',
-    title: 'Key Outcomes',
-    desc: 'Expect strong brand recall, higher ROI without necessarily increasing your ad spend, and a consistent, powerful brand voice. Your marketing matrix will adapt faster to market changes, backed by revenue-focused reporting.',
-    tags: ['Brand Recognition', 'Higher ROI', 'Adaptability'],
-  },
-  {
-    num: '02',
-    title: 'The Experience',
-    desc: 'Clarity from Day One. Our strategies are simple to understand and implement. Expect insightful creative backed by logic, flawless and coordinated delivery, and honest, transparent reporting.',
-    tags: ['Clarity', 'Flawless Execution', 'Honest Reporting'],
-  }
-];
+
+
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+const CATEGORIES = {
+    BRAND: 'brand',
+    MEDIA: 'media',
+    TECH: 'tech'
+};
+const SERVICES_DATA = {
+    [CATEGORIES.BRAND]: {
+        title: "Brand Solutions",
+        description: "Our Strategists, Designers, Video Editors and Animators provide you with holistic solutions to grow your digital presence and achieve your business goals through both day-to-day content and integrated flagship campaigns.",
+        logos: [
+            { name: 'Afro', src: brandImage1 },
+            { name: 'Airtel', src: brandImage2 },
+            { name: 'Anon', src: brandImage3 },
+            { name: 'Digitantra', src: brandImage4 },
+            { name: 'Drinking Water', src: brandImage5 },
+            { name: 'Giz', src: brandImage6 },
+            { name: 'Golden Arc', src: brandImage7 },
+            { name: 'Google', src: brandImage8 },
+            { name: 'Gopa', src: brandImage9 },
+            { name: 'Hamada', src: brandImage10 },
+        ],
+        accordions: [
+            { title: "Social Media Management", content: "We create well-researched, insight-driven content strategies that build real communities." },
+            { title: "Original Content and Copywriting", content: "Compelling ad copy and original content that prioritizes impact and clarity." },
+            { title: "Graphic Design & Illustrations", content: "Thumb-stopping visual content that brings your brand’s personality to life." },
+            { title: "Video Editing and Animation", content: "High-quality 2D/3D animations and video edits optimized for social sharing." },
+            { title: "Film Production & Photography", content: "In-house production hub creating ad films and premium photo/video assets." },
+            { title: "Campaign Planning", content: "Integrated flagship campaigns that deliver beyond expectations." },
+            { title: "Schbang Fluence & ORM", content: "Connecting you with influencers and monitoring brand conversations." },
+            { title: "Print, OOH, Mainline Advertising", content: "Creating neck-turning outdoor assets and physical touchpoints." },
+            { title: "New Brand Launch and Rebranding", content: "Meditation on brand purpose and crafting fluid personality kits." }
+        ]
+    },
+    [CATEGORIES.MEDIA]: {
+        title: "Media Solutions",
+        description: "We orchestrate data-driven media strategies to ensure your brand reaches the right audience at the ideal moment, maximizing ROI across every digital channel through precision and research.",
+        logos: [
+            { name: 'hitech', src: brandImage11 },
+            { name: 'IIFM', src: brandImage12 },
+            { name: 'ireda', src: brandImage13 },
+            { name: 'logo', src: brandImage14 },
+            { name: 'logo2', src: brandImage15 },
+            { name: 'ministry logo', src: brandImage16 },
+            { name: 'ministry renewable logo', src: brandImage17 },
+            { name: 'my account logo', src: brandImage18 },
+            { name: 'namami gange logo', src: brandImage19 },
+        ],
+        accordions: [
+            { title: "Media Planning & Buying", content: "Strategic allocation of budgets across premium inventory for maximum impact." },
+            { title: "Performance Marketing", content: "Data-led SEM and Paid Social campaigns focused on conversions and scale." },
+            { title: "Programmatic Advertising", content: "Automated real-time bidding to reach specific audience segments at scale." },
+            { title: "Market Research & Insights", content: "Deep diving into consumer behavior to fuel media decisions." },
+            { title: "SEO & Organic Growth", content: "Technical and content-led search engine optimization for long-term visibility." },
+            { title: "Influencer Media Strategy", content: "Scaling influencer campaigns with paid media amplification." }
+        ]
+    },
+    [CATEGORIES.TECH]: {
+        title: "Tech Solutions",
+        description: "Transforming businesses through scalable technology and custom digital infrastructure. From complex web apps to integrated automation systems, we build what drives growth.",
+        logos: [
+            { name: 'wotr logo', src: brandImage20 },
+            { name: 'reliance jio logo', src: brandImage21 },
+            { name: 'SECI logo', src: brandImage22 },
+            { name: 'soft logo', src: brandImage23 },
+            { name: 'vedanta logo', src: brandImage24 },
+            { name: 'Vi-Logo-Vector', src: brandImage25 },
+            { name: 'wadhwani logo', src: brandImage26 },
+
+        ],
+        accordions: [
+            { title: "UI/UX Design & Prototyping", content: "User-centric design systems and interactive prototypes for modern applications." },
+            { title: "Web & App Development", content: "Scalable frontend and backend architectures using React, Next.js, and more." },
+            { title: "CRM & CMS Implementation", content: "Expert setup of HubSpot, Zoho, and headless CMS solutions." },
+            { title: "Marketing Automation", content: "Building automated workflows that streamline customer journeys." },
+            { title: "Custom API Integrations", content: "Connecting disparate systems to ensure seamless data flow." },
+            { title: "E-commerce Architectures", content: "Building high-performance online stores with headless capabilities." }
+        ]
+    }
+};
 
 export default function ServicesPage() {
-  const containerRef = useRef(null);
+    const [activeCategory, setActiveCategory] = useState(CATEGORIES.BRAND);
+    const [openIndex, setOpenIndex] = useState(-1);
+    const containerRef = useRef(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    const ctx = gsap.context(() => {
-      gsap.registerPlugin(ScrollTrigger);
+    const currentData = SERVICES_DATA[activeCategory];
 
-      // 1. Top Hero Heading
-      gsap.fromTo('.services-hero-heading',
-        { y: 120, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: 'expo.out', delay: 0.1 }
-      );
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        setOpenIndex(-1); // Reset accordion on category change
+    }, [activeCategory]);
 
-      // 2. Headings that appear on scroll down
-      gsap.utils.toArray('.services-scroll-heading').forEach((heading) => {
-        gsap.fromTo(heading,
-          { y: 120, opacity: 0, scale: 0.95 },
-          { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: 'expo.out', scrollTrigger: { trigger: heading, start: 'top 85%' } }
-        );
-      });
+    const handleToggle = (index) => {
+        setOpenIndex(prev => prev === index ? -1 : index);
+    };
 
-      // 3. Stagger the items block by block when scrolled into view
-      gsap.utils.toArray('.services-list-container').forEach((container) => {
-        const items = container.querySelectorAll('.services-page-item');
-        const numbers = container.querySelectorAll('.service-huge-number');
+    return (
+        <div ref={containerRef} className="bg-white min-h-screen pt-20 pb-44 px-[6vw] font-sans selection:bg-black selection:text-white">
 
-        // Graceful massive slide-up for row
-        gsap.fromTo(items,
-          { y: 100, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            stagger: 0.2,
-            ease: 'expo.out',
-            scrollTrigger: { trigger: container, start: 'top 75%' }
-          }
-        );
-
-        // Powerful spring impact for the giant numbers
-        gsap.fromTo(numbers,
-          { x: -50, scale: 0.5, opacity: 0 },
-          {
-            x: 0, scale: 1, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'elastic.out(1, 0.7)',
-            scrollTrigger: { trigger: container, start: 'top 75%' }
-          }
-        );
-      });
-
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <div ref={containerRef} className="bg-[#0b162c] min-h-screen font-sans selection:bg-[#00aaff] selection:text-white">
-
-      {/* SECTION 1: WHAT WE DO (Hero & Dark Theme) */}
-      <div className="pt-28 pb-16 px-[6vw] text-white sm:pt-20">
-        <div className="max-w-[1200px] mb-12 sm:mb-10">
-          <p className="font-sans text-[1rem] font-bold tracking-[0.3em] uppercase text-[#00aaff] mb-6">(What We Do)</p>
-          <h1 className="services-hero-heading font-serif text-[clamp(2.5rem,5.5vw,6rem)] font-medium leading-[1.05] tracking-tighter text-white shrink-0">
-            We deliver end-to-end
-            <br /><em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] to-[#8cc63f]">integrated solutions.</em>
-          </h1>
-          <p className="services-hero-heading mt-6 text-xl font-light text-white/50 max-w-[600px] leading-snug">
-            Not isolated services. Our core capability is making every channel work together seamlessly.
-          </p>
-        </div>
-
-        <div className="services-list-container flex flex-col gap-0" role="list">
-          {CORE_SERVICES.map((s) => (
-            <div key={s.num} className="services-page-item grid  gap-12 items-start py-10 border-t border-white/10 grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-white/10" role="listitem">
-              <div className="service-huge-number font-serif text-[5rem] font-bold leading-none tracking-tighter sm:text-6xl text-opacity-10 opacity-10" aria-hidden="true">{s.num}</div>
-              <div className="services-page-item-content">
-                <h2 className="font-serif text-[clamp(1.8rem,3vw,3.5rem)] font-medium leading-tight mb-8 text-white">{s.title}</h2>
-                <p className="font-sans text-xl leading-relaxed text-white/60 max-w-[700px] mb-12 font-light sm:text-lg sm:mb-8">{s.desc}</p>
-                <div className="flex gap-4 flex-wrap sm:gap-3">
-                  {s.tags.map(t => (
-                    <span key={t} className="px-5 py-2 rounded-full border border-white/10 text-[0.75rem] font-medium tracking-wide text-white/50 bg-white/5 hover:bg-white/10 hover:text-[#00aaff] transition-colors cursor-default whitespace-nowrap">{t}</span>
-                  ))}
+            {/* CATEGORY NAVIGATION */}
+            <div className="flex justify-center border-b border-neutral-100 mb-24">
+                <div className="flex gap-14">
+                    {Object.values(CATEGORIES).map((cat) => (
+                        <button
+                            key={cat}
+                            onClick={() => setActiveCategory(cat)}
+                            className={`pb-5 text-[0.8rem] font-bold uppercase tracking-[0.25em] transition-all relative ${activeCategory === cat ? 'text-black' : 'text-neutral-300 hover:text-black'
+                                }`}
+                        >
+                            {cat} Solution
+                            {activeCategory === cat && (
+                                <motion.div
+                                    layoutId="tab-underline"
+                                    className="absolute bottom-0 left-0 right-0 h-[3px] bg-black"
+                                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                />
+                            )}
+                        </button>
+                    ))}
                 </div>
-              </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* SECTION 2: THE PROBLEM (Light Theme) */}
-      <div className="py-20 px-[6vw] bg-[#ffffff] text-[#0f172a] border-y border-black/5">
-        <div className="max-w-[1200px] mb-16 sm:mb-10">
-          <p className="font-sans text-[1rem] tracking-[0.3em] uppercase text-[#ff4444] mb-6 font-bold">(What We Solve)</p>
-          <h2 className="services-scroll-heading font-serif text-[clamp(2.5rem,4.5vw,5rem)] font-medium leading-[1.05] tracking-tighter text-[#0f172a] shrink-0">
-            Most brands don’t fail
-            <br />due to lack of ideas —
-            <br /><em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#ff4444] to-[#ffaa00]">they fail due to lack of alignment.</em>
-          </h2>
-        </div>
+            <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 justify-between lg:gap-x-28 md:gap-x-14 gap-y-20 items-start"
+            >
+                {/* LEFT SECTION */}
+                <div className="w-full">
+                    <h1 className="text-3xl md:text-[2.2rem] font-black text-black mb-4 tracking-tighter leading-[1] uppercase">
+                        {currentData.title}
+                    </h1>
+                    <p className="text-[1rem] leading-[1.25] text-neutral-800 mb-8 max-w-[540px] font-normal">
+                        {currentData.description}
+                    </p>
 
-        <div className="services-list-container flex flex-col gap-0" role="list">
-          {THE_PROBLEM.map((s) => (
-            <div key={s.num} className="services-page-item grid gap-12 items-start py-10 border-t border-black/10 grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-black/10" role="listitem">
-              <div className="service-huge-number font-serif text-[5rem] font-bold leading-none tracking-tighter sm:text-6xl text-black/30" aria-hidden="true">{s.num}</div>
-              <div className="services-page-item-content">
-                <h3 className="font-serif text-[clamp(1.8rem,3vw,3.5rem)] font-medium leading-tight mb-8 text-[#0f172a]">{s.title}</h3>
-                <p className="font-sans text-xl leading-relaxed text-[#555] max-w-[700px] mb-8 font-light sm:text-lg sm:mb-6">{s.desc}</p>
-                <div className="flex gap-4 flex-wrap sm:gap-3">
-                  {s.tags.map(t => (
-                    <span key={t} className="px-5 py-2 rounded-full border border-black/10 text-[0.75rem] font-medium tracking-wide text-[#666] bg-black/5 hover:bg-black/10 transition-colors cursor-default whitespace-nowrap">{t}</span>
-                  ))}
+                    <div className="w-24 h-[1.5px] bg-black mb-8"></div>
+
+                    <p className="text-[0.75rem] font-black text-black mb-8 uppercase tracking-[0.2em]">
+                        Proud to work with the biggest brands in India & Abroad
+                    </p>
+
+                    <div className="grid grid-cols-3 md:grid-cols-3 gap-x-20 gap-y-10 items-center mt-20">
+                        {currentData.logos.map((logo, i) => (
+                            <div key={i} className="flex justify-start items-center h-50 grayscale hover:grayscale-0 transition-all duration-500">
+                                <img
+                                    src={logo.src}
+                                    alt={logo.name}
+                                    className="max-h-full max-w-full object-contain"
+                                />
+                            </div>
+                        ))}
+                    </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* SECTION 3: WHAT YOU GET (Brand Blue Theme) */}
-      <div className="py-20 px-[6vw] bg-[#0066cc] text-white">
-        <div className="max-w-[1200px] mb-16 sm:mb-10">
-          <p className="font-sans text-[1rem] tracking-[0.3em] uppercase text-[#8cc63f] mb-6 font-bold">(What You Get)</p>
-          <h2 className="services-scroll-heading font-serif text-[clamp(2.5rem,5vw,5.5rem)] font-medium leading-[1.05] tracking-tighter text-white shrink-0">
-            We don’t just deliver campaigns.
-            <br />We build a <em className="italic font-normal text-[#8cc63f]">growth system</em>.
-          </h2>
-        </div>
+                {/* RIGHT SECTION: ACCORDIONS */}
+                <div className="w-full">
+                    <div className="border-neutral-200">
+                        {currentData.accordions.map((item, index) => {
+                            const isOpen = openIndex === index;
+                            return (
+                                <div key={index} className="border-b border-neutral-200">
+                                    <button
+                                        type="button"
+                                        onClick={() => handleToggle(index)}
+                                        className="w-full flex items-center justify-between text-left group cursor-pointer relative py-6 transition-all duration-300 hover:bg-neutral-50/50"
+                                    >
+                                        <span className={`text-xl md:text-[1rem] font-bold tracking-tight transition-colors duration-300 ${isOpen ? 'text-black' : 'text-black group-hover:text-black'}`}>
+                                            {item.title}
+                                        </span>
+                                        <motion.div
+                                            animate={{ rotate: isOpen ? 180 : 0 }}
+                                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                            className="flex items-center justify-center w-7 h-7"
+                                        >
+                                            <svg className={`w-5 h-5 transition-colors ${isOpen ? 'text-black' : 'text-black group-hover:text-black'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </motion.div>
+                                    </button>
 
-        <div className="services-list-container flex flex-col gap-0" role="list">
-          {THE_SYSTEM.map((s) => (
-            <div key={s.num} className="services-page-item grid gap-12 items-start py-10 border-t border-white/20 grid-cols-1 sm:gap-6 sm:py-8 last:border-b last:border-white/20" role="listitem">
-              <div className="service-huge-number font-serif text-[5rem] font-bold leading-none tracking-tighter sm:text-6xl text-white/20" aria-hidden="true">{s.num}</div>
-              <div className="services-page-item-content">
-                <h3 className="font-serif text-[clamp(1.8rem,3vw,3.5rem)] font-medium leading-tight mb-8 text-white">{s.title}</h3>
-                <p className="font-sans text-xl leading-relaxed text-white/80 max-w-[700px] mb-8 font-light sm:text-lg sm:mb-6">{s.desc}</p>
-                <div className="flex gap-4 flex-wrap sm:gap-3">
-                  {s.tags.map(t => (
-                    <span key={t} className="px-5 py-2 rounded-full border border-white/20 text-[0.75rem] font-medium tracking-wide text-white/90 bg-white/10 hover:bg-white/20 hover:text-white transition-colors cursor-default whitespace-nowrap">{t}</span>
-                  ))}
+                                    <AnimatePresence initial={false}>
+                                        {isOpen && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="pb-4">
+                                                    <p className="text-[0.85rem] leading-[1.8] text-neutral-800 max-w-[95%] font-normal">
+                                                        {item.content}
+                                                    </p>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-              </div>
-            </div>
-          ))}
+            </motion.div>
         </div>
-      </div>
-
-    </div>
-  );
+    );
 }

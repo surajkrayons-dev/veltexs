@@ -18,7 +18,7 @@ export default function Footer() {
         <span>At Veltex, we believe that every business, regardless of size or industry, deserves the power to tell their story and reach their audience.
 
           Since 2013, making professional media planning and execution accessible to all.</span>
-        <span>© {new Date().getFullYear()} Veltex Studio. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Veltex.com. All rights reserved.</span>
       </div>
     </footer>
   );

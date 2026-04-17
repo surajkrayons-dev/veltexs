@@ -61,7 +61,7 @@ export default function Contact() {
               { label: 'Email', value: 'Hello@veltexs.com' },
               { label: 'Phone', value: '+91 9485628238' },
               { label: 'Based in', value: '711, Plot A09, ITL Towers, Netaji Subhash Place, Pitampura,Delhi (110034)' },
-              { label: 'Open to', value: 'Global Projects' },
+              { label: 'Open to', value: 'Across India & Global Projects' },
             ].map((item) => (
               <div key={item.label} className="contact-info-item">
                 <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#666] mb-1.5">

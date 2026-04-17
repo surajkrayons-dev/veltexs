@@ -17,9 +17,7 @@ export default function Hero({ navRef }) {
   const heroRef = useRef(null);
   const contentRef = useRef(null);
   const overlayBgRef = useRef(null);
-  useEffect(() => {
-    // Initial logo state set via JSX now
-  }, []);
+
   // Split title into chars
   useEffect(() => {
     if (!titleRef.current) return;
@@ -46,8 +44,6 @@ export default function Hero({ navRef }) {
     });
   }, []);
 
-
-
   // Hero entrance animation
   useHeroAnimation({
     overlayRef,
@@ -67,27 +63,14 @@ export default function Hero({ navRef }) {
 
   return (
     <>
-      {/* V Intro Overlay with Studio Mesh Background */}
+      {/* V Intro Overlay - Pure White Always */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-[9999] bg-[#ffffff] flex items-center justify-center pointer-events-none overflow-hidden"
+        className="fixed inset-0 z-[9999] bg-white flex items-center justify-center pointer-events-none overflow-hidden"
         aria-hidden="true"
         id="v-intro-overlay"
         style={{ display: 'flex' }}
       >
-        {/* Animated Mesh Gradient Background - Creative Addition */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#0066cc]/10 blur-[120px] rounded-full animate-pulse" />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#8cc63f]/10 blur-[120px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
-
-        {/* Premium Noise / Grain Texture */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
-          style={{ backgroundImage: 'url("https://grainy-gradients.vercel.app/noise.svg")' }} />
-
-        {/* Cinematic Brand Halo */}
-        <div id="intro-halo" className="absolute w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-[#0066cc]/20 via-[#00aaff]/10 to-[#8cc63f]/20 blur-[100px] opacity-0 scale-50" />
-
         <img
           ref={logoRef}
           src={veltexLogo}
