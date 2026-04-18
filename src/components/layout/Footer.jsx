@@ -3,7 +3,7 @@ import VeltexLogo from '../../assets/VeltexLogo.png';
 export default function Footer() {
   return (
     <footer
-      className="relative py-16 px-[6vw] flex flex-col gap-4 opacity-80 font-sans text-[0.7rem] uppercase tracking-[0.25em] z-10 footer pb-32 sm:pb-40 text-black bg-white"
+      className="relative py-24 px-[6vw] flex flex-col gap-6 font-sans text-[0.75rem] uppercase tracking-[0.3em] z-10 footer pb-32 sm:pb-40 text-black bg-transparent"
       role="contentinfo"
     >
       <div className="mb-4 opacity-100 block">

@@ -158,10 +158,6 @@ export default function Nav({ navRef }) {
         ref={navRef}
         id="main-nav-container"
         className="fixed left-0 right-0 z-[9999] flex flex-col items-center gap-4 px-4 bottom-4"
-        style={{
-          opacity: isHome ? 0 : 1,
-          transform: isHome ? 'translateY(80px)' : 'translateY(0)',
-        }}
       >
         {/* Menu Card Overlay - Enhanced 3D Style */}
         {menuOpen && (

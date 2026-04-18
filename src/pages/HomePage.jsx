@@ -39,7 +39,6 @@ export default function HomePage({ navRef }) {
 
   return (
     <>
-      <Hero navRef={navRef} />
       <PageWrapper bg="#0b162c" className="relative z-[20] pt-[100vh]">
         <Marquee />
         {/* <VDivider fromColor="#0b162c" toColor="#ffffff" /> */}

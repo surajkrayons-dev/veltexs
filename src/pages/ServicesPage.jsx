@@ -31,11 +31,6 @@ import brandImage26 from "../assets/service/wadhwani logo.png"
 
 
 
-
-
-
-
-
 gsap.registerPlugin(ScrollTrigger);
 
 const CATEGORIES = {
@@ -66,7 +61,7 @@ const SERVICES_DATA = {
             { title: "Video Editing and Animation", content: "High-quality 2D/3D animations and video edits optimized for social sharing." },
             { title: "Film Production & Photography", content: "In-house production hub creating ad films and premium photo/video assets." },
             { title: "Campaign Planning", content: "Integrated flagship campaigns that deliver beyond expectations." },
-            { title: "Schbang Fluence & ORM", content: "Connecting you with influencers and monitoring brand conversations." },
+            { title: "Veltex Fluence & ORM", content: "Connecting you with influencers and monitoring brand conversations." },
             { title: "Print, OOH, Mainline Advertising", content: "Creating neck-turning outdoor assets and physical touchpoints." },
             { title: "New Brand Launch and Rebranding", content: "Meditation on brand purpose and crafting fluid personality kits." }
         ]

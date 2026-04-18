@@ -21,5 +21,5 @@ export default function PageWrapper({ children, bg = '#ffffff', className = '' }
     return () => ctx.revert();
   }, [location.pathname, bg]);
 
-  return <main ref={wrapRef} className={`relative min-h-screen ${className}`} role="main">{children}</main>;
+  return <main ref={wrapRef} className={`relative z-[20] min-h-screen ${className}`} role="main">{children}</main>;
 }

@@ -91,13 +91,23 @@ export default function ContactPage() {
           </div>
           <div className="contact-page-form-group flex flex-col gap-2">
             <label htmlFor="cp-type" className="font-sans text-[0.7rem] tracking-[0.1em] uppercase text-[#0f172a] font-semibold">Service</label>
-            <select id="cp-type" className="bg-transparent border-none border-b border-black/15 py-3 font-sans text-lg focus:outline-none focus:border-[#0066cc] transition-colors text-[#0f172a] cursor-pointer appearance-none">
-              <option value="">Select a service</option>
-              <option>Brand Identity</option>
-              <option>Integrated Campaigns</option>
-              <option>Digital Experience</option>
-              <option>Optimization</option>
-            </select>
+            <div className="relative max-w-[280px]">
+              <select
+                id="cp-type"
+                className="w-full bg-transparent border-none border-b border-black/15 py-3 font-sans text-[0.9rem] focus:outline-none focus:border-[#0066cc] transition-colors text-[#0f172a] cursor-pointer appearance-none pr-8 pl-4"
+              >
+                <option value="">Select a service</option>
+                <option>Brand Identity</option>
+                <option>Integrated Campaigns</option>
+                <option>Digital Experience</option>
+                <option>Optimization</option>
+              </select>
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-black/30">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <path d="M2.5 4L5 6.5L7.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </div>
           </div>
           <div className="contact-page-form-group flex flex-col gap-2">
             <label htmlFor="cp-message" className="font-sans text-[0.7rem] tracking-[0.1em] uppercase text-[#0f172a] font-semibold">Message</label>
