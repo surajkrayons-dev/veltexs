@@ -43,7 +43,7 @@ const CATEGORIES = {
     BRAND: 'brand Solution',
     MEDIA: 'media Solution',
     TECH: 'tech Solution',
-    CPAAS: 'cpaas'
+    CPAAS: 'Communication Platform'
 };
 const SERVICES_DATA = {
     [CATEGORIES.BRAND]: {
