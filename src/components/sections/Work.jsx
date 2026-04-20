@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useWorkAnimation } from '../../hooks/useScrollAnimations';
 import astrotring from "../../assets/work/astrotring.png"
-import goldenarc from "../../assets/work/goldenarc.png"
+import namamiGange from "../../assets/work/namamiGange.png"
 import icgh from "../../assets/work/icgh.png"
 import sportrz from "../../assets/work/sportrz.png"
 import astrotringthumb from "../../assets/work/astrotringthumb.png"
-import goldenarcthumb from "../../assets/work/goldenarcthumb.png"
+import namamiGangethumb from "../../assets/work/namamiGangethumb.png"
 import icghthumb from "../../assets/work/icghthumb.png"
 import sportrzthumb from "../../assets/work/sportrzthumb.png"
 
@@ -26,9 +26,9 @@ const PROJECTS = [
     title: 'Creative ',
     subtitle: 'Campaign Execution',
     desc: 'We develop your brand voice, tone, and creative concept — then pressure-test every asset against your core message before a single piece of content goes live. Consistency is designed in, not added later.',
-    thumb: goldenarcthumb,
-    bg: goldenarc,
-    url: "https://goldenarc.co.in/"
+    thumb: namamiGangethumb,
+    bg: namamiGange,
+    url: "https://nmcg.nic.in/"
   },
   {
     id: 1,
@@ -111,11 +111,11 @@ export default function Work() {
       </div>
 
       {/* Project Gallery - Full Width Image with Enhanced Overlay */}
-      <div className="work-project-gallery relative w-full h-[80vh] min-h-[600px] max-h-[800px] overflow-hidden rounded-sm shadow-2xl">
+      <div className="work-project-gallery relative w-full h-[80vh] min-h-[600px] max-h-[800px] overflow-hidden shadow-2xl">
         {/* Background Image with Parallax Effect */}
         <div className="absolute inset-0">
           <img
-            className="work-bg-image w-full h-full object-cover transition-all duration-1000 ease-out hover:scale-110"
+            className="work-bg-image w-full h-full object-contain transition-all duration-1000 ease-out hover:scale-110"
             style={{ transform: 'scale(1.05)' }}
             src={proj.bg}
             alt={proj.title}

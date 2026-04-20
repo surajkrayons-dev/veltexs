@@ -2,32 +2,33 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import brandImage1 from "../assets/service/afro logo.png"
-import brandImage2 from "../assets/service/Airtel-logo.png"
-import brandImage3 from "../assets/service/anon log.png"
-import brandImage4 from "../assets/service/digitantra logo.png"
-import brandImage5 from "../assets/service/drinking water logo.png"
-import brandImage6 from "../assets/service/giz logo.png"
-import brandImage7 from "../assets/service/golden logo.png"
-import brandImage8 from "../assets/service/Google-Logo-PNG-Picture.png"
-import brandImage9 from "../assets/service/gopa logo.png"
-import brandImage10 from "../assets/service/hamada logo.png"
-import brandImage11 from "../assets/service/hitech logo.png"
-import brandImage12 from "../assets/service/IIFM logo.png"
-import brandImage13 from "../assets/service/ireda logo.png"
-import brandImage14 from "../assets/service/logo.png"
-import brandImage15 from "../assets/service/logo2.png"
-import brandImage16 from "../assets/service/ministry log.png"
-import brandImage17 from "../assets/service/ministry renewable logo.png"
-import brandImage18 from "../assets/service/my account logo.png"
-import brandImage19 from "../assets/service/namami gange logo.png"
-import brandImage20 from "../assets/service/wotr logo.png"
-import brandImage21 from "../assets/service/Reliance_Jio_Logo_(October_2015).png"
-import brandImage22 from "../assets/service/SECI logo.png"
-import brandImage23 from "../assets/service/soft logo.png"
-import brandImage24 from "../assets/service/vedanta log.png"
-import brandImage25 from "../assets/service/Vi-Logo-Vector-300x300.png"
-import brandImage26 from "../assets/service/wadhwani logo.png"
+import brandImage1 from "../assets/service/brand/logo2.png"
+import brandImage2 from "../assets/service/brand/drinking water logo.png"
+import brandImage3 from "../assets/service/brand/giz logo.png"
+import brandImage4 from "../assets/service/brand/ireda logo.png"
+import brandImage5 from "../assets/service/brand/logo.png"
+import brandImage6 from "../assets/service/brand/ministry log.png"
+import brandImage7 from "../assets/service/brand/ministry renewable logo.png"
+import brandImage8 from "../assets/service/brand/namami gange logo.png"
+import brandImage9 from "../assets/service/brand/SECI logo.png"
+import mediaImage1 from "../assets/service/media/afro logo.png"
+import mediaImage2 from "../assets/service/media/anon log.png"
+import mediaImage3 from "../assets/service/media/gopa logo.png"
+import mediaImage4 from "../assets/service/media/idh.png"
+import mediaImage5 from "../assets/service/media/IIFM logo.png"
+import mediaImage6 from "../assets/service/media/soft logo.png"
+import mediaImage7 from "../assets/service/media/vedanta log.png"
+import mediaImage8 from "../assets/service/media/wadhwani logo.png"
+import mediaImage9 from "../assets/service/media/wotr logo.png"
+import techImage1 from "../assets/service/tech/Airtel-logo.png"
+import techImage2 from "../assets/service/tech/digitantra logo.png"
+import techImage3 from "../assets/service/tech/golden logo.png"
+import techImage4 from "../assets/service/tech/Google-Logo-PNG-Picture.png"
+import techImage5 from "../assets/service/tech/hamada logo.png"
+import techImage6 from "../assets/service/tech/hitech logo.png"
+import techImage7 from "../assets/service/tech/my account logo.png"
+import techImage8 from "../assets/service/tech/Reliance_Jio_Logo_(October_2015).png"
+import techImage9 from "../assets/service/tech/Vi-Logo-Vector-300x300.png"
 
 
 
@@ -52,7 +53,7 @@ const SERVICES_DATA = {
             { name: 'Golden Arc', src: brandImage7 },
             { name: 'Google', src: brandImage8 },
             { name: 'Gopa', src: brandImage9 },
-            { name: 'Hamada', src: brandImage10 },
+
         ],
         accordions: [
             { title: "Social Media Management", content: "We create well-researched, insight-driven content strategies that build real communities." },
@@ -70,15 +71,15 @@ const SERVICES_DATA = {
         title: "Media Solutions",
         description: "We orchestrate data-driven media strategies to ensure your brand reaches the right audience at the ideal moment, maximizing ROI across every digital channel through precision and research.",
         logos: [
-            { name: 'hitech', src: brandImage11 },
-            { name: 'IIFM', src: brandImage12 },
-            { name: 'ireda', src: brandImage13 },
-            { name: 'logo', src: brandImage14 },
-            { name: 'logo2', src: brandImage15 },
-            { name: 'ministry logo', src: brandImage16 },
-            { name: 'ministry renewable logo', src: brandImage17 },
-            { name: 'my account logo', src: brandImage18 },
-            { name: 'namami gange logo', src: brandImage19 },
+            { name: 'hitech', src: mediaImage1 },
+            { name: 'IIFM', src: mediaImage2 },
+            { name: 'ireda', src: mediaImage3 },
+            { name: 'logo', src: mediaImage4 },
+            { name: 'logo2', src: mediaImage5 },
+            { name: 'ministry logo', src: mediaImage6 },
+            { name: 'ministry renewable logo', src: mediaImage7 },
+            { name: 'my account logo', src: mediaImage8 },
+            { name: 'namami gange logo', src: mediaImage9 },
         ],
         accordions: [
             { title: "Media Planning & Buying", content: "Strategic allocation of budgets across premium inventory for maximum impact." },
@@ -93,13 +94,15 @@ const SERVICES_DATA = {
         title: "Tech Solutions",
         description: "Transforming businesses through scalable technology and custom digital infrastructure. From complex web apps to integrated automation systems, we build what drives growth.",
         logos: [
-            { name: 'wotr logo', src: brandImage20 },
-            { name: 'reliance jio logo', src: brandImage21 },
-            { name: 'SECI logo', src: brandImage22 },
-            { name: 'soft logo', src: brandImage23 },
-            { name: 'vedanta logo', src: brandImage24 },
-            { name: 'Vi-Logo-Vector', src: brandImage25 },
-            { name: 'wadhwani logo', src: brandImage26 },
+            { name: 'wotr logo', src: techImage1 },
+            { name: 'reliance jio logo', src: techImage2 },
+            { name: 'SECI logo', src: techImage3 },
+            { name: 'soft logo', src: techImage4 },
+            { name: 'vedanta logo', src: techImage5 },
+            { name: 'Vi-Logo-Vector', src: techImage6 },
+            { name: 'wadhwani logo', src: techImage7 },
+            { name: 'wotr logo', src: techImage8 },
+            { name: 'wotr logo', src: techImage9 },
 
         ],
         accordions: [
@@ -179,7 +182,7 @@ export default function ServicesPage() {
 
                     <div className="grid grid-cols-3 md:grid-cols-3 gap-x-20 gap-y-10 items-center mt-20">
                         {currentData.logos.map((logo, i) => (
-                            <div key={i} className="flex justify-start items-center h-50 grayscale hover:grayscale-0 transition-all duration-500">
+                            <div key={i} className="flex justify-center items-center h-50 grayscale hover:grayscale-0 transition-all duration-500">
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
