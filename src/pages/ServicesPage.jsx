@@ -21,23 +21,29 @@ import mediaImage7 from "../assets/service/media/vedanta log.png"
 import mediaImage8 from "../assets/service/media/wadhwani logo.png"
 import mediaImage9 from "../assets/service/media/wotr logo.png"
 import techImage1 from "../assets/service/tech/Airtel-logo.png"
-import techImage2 from "../assets/service/tech/digitantra logo.png"
-import techImage3 from "../assets/service/tech/golden logo.png"
+import techImage2 from "../assets/service/tech/du.png"
+import techImage3 from "../assets/service/tech/etisalat.png"
 import techImage4 from "../assets/service/tech/Google-Logo-PNG-Picture.png"
-import techImage5 from "../assets/service/tech/hamada logo.png"
-import techImage6 from "../assets/service/tech/hitech logo.png"
-import techImage7 from "../assets/service/tech/my account logo.png"
-import techImage8 from "../assets/service/tech/Reliance_Jio_Logo_(October_2015).png"
-import techImage9 from "../assets/service/tech/Vi-Logo-Vector-300x300.png"
+import techImage5 from "../assets/service/tech/my account logo.png"
+import techImage6 from "../assets/service/tech/Reliance_Jio_Logo_(October_2015).png"
+import techImage7 from "../assets/service/tech/Vi-Logo-Vector-300x300.png"
+import cpaasImage1 from "../assets/service/cpaas/astrotring.png"
+import cpaasImage2 from "../assets/service/cpaas/digitantra logo.png"
+import cpaasImage3 from "../assets/service/cpaas/golden logo.png"
+import cpaasImage4 from "../assets/service/cpaas/mobisastra.png"
+import cpaasImage5 from "../assets/service/cpaas/sportrz.jpg"
+
+
 
 
 
 gsap.registerPlugin(ScrollTrigger);
 
 const CATEGORIES = {
-    BRAND: 'brand',
-    MEDIA: 'media',
-    TECH: 'tech'
+    BRAND: 'brand Solution',
+    MEDIA: 'media Solution',
+    TECH: 'tech Solution',
+    CPAAS: 'Communication Platform'
 };
 const SERVICES_DATA = {
     [CATEGORIES.BRAND]: {
@@ -101,8 +107,7 @@ const SERVICES_DATA = {
             { name: 'vedanta logo', src: techImage5 },
             { name: 'Vi-Logo-Vector', src: techImage6 },
             { name: 'wadhwani logo', src: techImage7 },
-            { name: 'wotr logo', src: techImage8 },
-            { name: 'wotr logo', src: techImage9 },
+
 
         ],
         accordions: [
@@ -112,6 +117,25 @@ const SERVICES_DATA = {
             { title: "Marketing Automation", content: "Building automated workflows that streamline customer journeys." },
             { title: "Custom API Integrations", content: "Connecting disparate systems to ensure seamless data flow." },
             { title: "E-commerce Architectures", content: "Building high-performance online stores with headless capabilities." }
+        ]
+    },
+    [CATEGORIES.CPAAS]: {
+        title: "Communications Platform as a Service (CPaaS)",
+        description: "The digital era offers businesses unprecedented opportunities to build meaningful relationships with their customers.",
+        logos: [
+            { name: 'astrotring', src: cpaasImage1 },
+            { name: 'digitantra logo', src: cpaasImage2 },
+            { name: 'golden logo', src: cpaasImage3 },
+            { name: 'mobisastra', src: cpaasImage4 },
+            { name: 'sportrz', src: cpaasImage5 }
+        ],
+        accordions: [
+            { title: "Transforming Customer Engagement in the Digital Age", content: "The digital era offers businesses unprecedented opportunities to build meaningful relationships with their customers. Success requires a strategic approach across all key dimensions." },
+            { title: "WhatsApp Business Messaging (WABA)", content: "WhatsApp Business Messaging empowers enterprises to break through traditional boundaries and create hyper-personalized customer experiences that drive meaningful revenue growth. As customers’ preferred channel for direct communication, WhatsApp enables instant, authentic conversations that forge deeper connections between brands and their audiences, turning satisfied customers into passionate advocates." },
+            { title: "Rich Communication Service (RCS)", content: "RCS is a messaging protocol for Google/ Android users, which is experienced within the native messaging app of Android phones." },
+            { title: "SMS Solutions", content: "SMS sevice allows enterprises to establish communication with mobile subscribers for establishing customer engagement and revenue growth." },
+            { title: "Email – Enterprise Platform", content: "Made for all volume customers and can support till 20 million emails per day volume with 100Kb mailer / attachment size. The platform can send both unique and common attachments and more attachment size can be configured after scoping." },
+            { title: "Enterprise Voice Platform", content: "With an expert voice broadcast platform, businesses can engage with a vast audience, maintain high levels of personalization and craft campaigns that deeply resonate." }
         ]
     }
 };
@@ -145,7 +169,7 @@ export default function ServicesPage() {
                             className={`pb-5 text-[0.8rem] font-bold uppercase tracking-[0.25em] transition-all relative ${activeCategory === cat ? 'text-black' : 'text-neutral-300 hover:text-black'
                                 }`}
                         >
-                            {cat} Solution
+                            {cat}
                             {activeCategory === cat && (
                                 <motion.div
                                     layoutId="tab-underline"
