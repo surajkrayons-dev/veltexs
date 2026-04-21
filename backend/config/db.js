@@ -3,21 +3,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// 1. Database se connect karne ke liye "Sequelize" ka object banaya
+// Railway ke andar 'mysql.railway.internal' sabse fast aur secure hai
 export const sequelize = new Sequelize(
   process.env.DB_NAME,     
   process.env.DB_USER,     
   process.env.DB_PASSWORD, 
   {
-    host: process.env.DB_HOST, 
+    host: process.env.DB_HOST || 'mysql.railway.internal', 
     port: process.env.DB_PORT || 3306, 
     dialect: 'mysql',          
-    logging: false,             
-    dialectOptions: {
-      ssl: {
-        rejectUnauthorized: false // Railway aur Render ke liye ye line Zaroori hai!
-      }
-    },
+    logging: false,
     pool: {
       max: 5,
       min: 0,
@@ -27,11 +22,10 @@ export const sequelize = new Sequelize(
   }
 );
 
-// 2. Connection check karne ka function
 export const connectDB = async () => {
   try {
     await sequelize.authenticate();
-    console.log('✅ Railway MySQL Connected Successfully!');
+    console.log('✅ Railway Internal Database Connected!');
   } catch (error) {
     console.error('❌ Connection Failed:', error.message);
   }
