@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios'; // Axios import kiya
 
 // Backend API URL
-const API_URL = 'https://veltex-v5.onrender.com/api/contact';
+const API_URL = 'https://veltex-v5-production.up.railway.app/api/contact';
 
 export default function ContactPage() {
   const containerRef = useRef(null);
