@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; // Axios import kiya
 
-const CONTACT_API = 'https://veltex-v5.onrender.com/api/contact';
-const AUTH_API = 'https://veltex-v5.onrender.com/api/auth/login';
+const CONTACT_API = 'https://veltex-v5-production.up.railway.app/api/contact';
+const AUTH_API = 'https://veltex-v5-production.up.railway.app/api/auth/login';
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
