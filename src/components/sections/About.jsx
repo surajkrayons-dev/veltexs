@@ -59,8 +59,8 @@ export default function About() {
           problems, shifts real perceptions, and grows real revenue.
         </p>
 
-        {/* Let the text column consume leftover space while the image keeps its natural width. */}
-        <div className="mt-16 grid grid-cols-1 items-start gap-4 lg:grid-cols-[minmax(0,1fr)_auto] ">
+        {/* Let text column consume leftover space while image keeps its natural width. */}
+        <div className="mt-16 grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="about-content-container flex w-full max-w-none flex-col gap-8">
             <h3 className="font-serif text-[clamp(2rem,3vw,3rem)] font-medium leading-[1.08] tracking-[-0.03em] text-[#0f172a]">
               Strategy first. <span className="font-normal italic text-[#0066cc]">Creativity always.</span>
@@ -82,16 +82,18 @@ export default function About() {
             </blockquote>
           </div>
 
-          {/* Keep the image on the right at its natural size without cropping it. */}
-          <div className="flex items-start justify-center ">
-            <div className="about-image-container relative w-fit shrink-0 max-w-full ">
+          {/* Keep image on the right with simple scale hover */}
+          <div className="flex items-start justify-center lg:justify-end">
+            <div className="about-image-container relative w-full lg:max-w-[600px] xl:max-w-[700px] shrink-0 overflow-hidden rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] group">
+              
               <img
                 ref={imageRef}
                 src={aboutHomePage}
                 alt="Veltex brand environment"
-                loading="lazy"
-                className="block h-auto max-h-[500px] w-auto max-w-full object-contain will-change-transform group-hover:scale-115 transition-transform duration-300"
+                loading="eager"
+                className="block h-auto max-h-[600px] lg:max-h-[500px] w-full object-cover will-change-transform transition-all duration-500 group-hover:scale-110"
               />
+              
             </div>
           </div>
 

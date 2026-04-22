@@ -274,8 +274,7 @@ export function useAboutAnimation({ sectionRef, imageRef, wordRefs }) {
 
       if (imageContainer) {
         gsap.from(imageContainer, {
-          x: 28,
-          y: 18,
+          x: 80,
           opacity: 0,
           duration: 1.15,
           ease: 'power3.out',
@@ -660,7 +659,7 @@ export function useProcessAnimation({ sectionRef, imageRef }) {
 
         imageReveal
           .from(imageShell, {
-            y: 28,
+            x: 80,
             opacity: 0,
             duration: 1.15,
           })
