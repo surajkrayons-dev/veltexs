@@ -1,15 +1,14 @@
 import nodemailer from 'nodemailer';
 import dns from 'dns';
 
-// FIX FOR RAILWAY IPv6 ERROR (ENETUNREACH):
-// Railway servers struggle with outgoing IPv6 connections to Gmail.
-// This single line forces Node.js to use IPv4 (like 142.250.xxx.xxx) instead of IPv6.
+// Fix for IPv6 issues on some servers
 dns.setDefaultResultOrder('ipv4first');
 
+// Universal SMTP Configuration (Can use Gmail, Brevo, Mailtrap, AWS, etc.)
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false, // true for 465, false for other ports
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: process.env.SMTP_PORT || 587,
+  secure: process.env.SMTP_PORT === '465', // Port 465 is secure (SSL), others like 587/2525 use STARTTLS
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
