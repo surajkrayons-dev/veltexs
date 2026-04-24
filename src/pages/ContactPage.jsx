@@ -5,8 +5,8 @@ import axios from 'axios';
 
 // Backend API URL
 // Automatically uses localhost in dev mode, and Railway URL in production (build)
-const API_URL = import.meta.env.DEV 
-  ? 'http://localhost:5000/api/contact' 
+const API_URL = import.meta.env.DEV
+  ? 'http://localhost:5000/api/contact'
   : 'https://veltex-v5-production.up.railway.app/api/contact';
 
 export default function ContactPage() {
@@ -22,18 +22,42 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  // SUBMIT HANDLER USING AXIOS
+  // SUBMIT HANDLER USING AXIOS + WEB3FORMS (FRONTEND EMAIL)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); setError(''); setSuccess(false);
     try {
+      // 1. Backend me data save karo (Database ke liye)
       const response = await axios.post(API_URL, formData);
+
+      // 2. Frontend se Email bhejo (Web3Forms ke zariye)
+      // NOTE: Iske liye tumhe koi backend ki zaroorat nahi hai.
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: "2385f6db-069f-4113-b9a0-87838fa0bba2", // Yahan apni key dalo
+          subject: `New Project Enquiry: ${formData.name}`,
+          from_name: "Veltex Studio",
+          replyto: formData.email,
+          message: `
+            Name: ${formData.name}
+            Email: ${formData.email}
+            Service: ${formData.service || 'Not specified'}
+            Message: ${formData.message}
+          `
+        })
+      });
+
       if (response.data.success) {
         setSuccess(true);
         setFormData({ name: '', email: '', service: '', message: '' });
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Unable to connect to the server. Please check your connection.');
+      setError(err.response?.data?.message || 'Something went wrong. Please check your connection.');
     } finally {
       setLoading(false);
     }
