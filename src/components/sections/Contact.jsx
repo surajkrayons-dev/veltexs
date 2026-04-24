@@ -21,10 +21,10 @@ export default function Contact() {
 
           <h2 className="contact-heading font-serif text-[clamp(2.5rem,4.5vw,6rem)] font-medium leading-[1.05] tracking-[-0.025em] mb-12 mt-4 text-[#0f172a]">
             For project enquiries,
-            <br />
+            {" "}
             <em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] via-[#00aaff] to-[#8cc63f] drop-shadow-sm pr-2 py-1">collaborations,</em>
-            <br />
-            or joining the studio.
+       
+          or joining the studio.
           </h2>
 
           <div className="contact-actions flex items-center gap-4 flex-wrap">

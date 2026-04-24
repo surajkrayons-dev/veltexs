@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useAboutAnimation } from '../../hooks/useScrollAnimations';
 import { VBackgroundPattern } from './VShape';
-import aboutHomePage from "../../assets/aboutHomePage.png"
+import aboutHomePage from "../../assets/aboutHomePage.jpeg"
 
 export default function About() {
   const sectionRef = useRef(null);
@@ -53,10 +53,10 @@ export default function About() {
         Veltex is a full-service <span className="font-semibold text-[#0066cc]">Integrated Marketing Agency</span> that combines strategic rigour with fearless creativity because we believe the best marketing doesn't just look good. It solves real problems, shifts real perceptions, and grows real revenue.
       </p>
 
-      {/* Float-based layout: image floats left, all content flows right & wraps below */}
+      {/* Float-based layout: image floats right, all content flows left & wraps below */}
       <div className="relative">
-        {/* Left Col: Image with parallax (Restored to Left) */}
-        <div className="about-image-column order-1 flex items-center justify-center md:float-left md:mr-12 mb-10 md:mb-4">
+        {/* Right Col: Image with parallax */}
+        <div className="about-image-column order-1 flex items-center justify-center md:float-right md:ml-12 mb-10 md:mb-4">
           <div className="about-image-container relative w-full max-w-[500px]">
             <img
               ref={imageRef}
@@ -68,9 +68,9 @@ export default function About() {
           </div>
         </div>
 
-        {/* Copy — flows on right side */}
+        {/* Copy — flows on left side */}
         <div className="about-content-container flex flex-col gap-7 pt-0 md:pt-8">
-          <h3 className="font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-medium leading-[1.2] tracking-[-0.025em] text-[#0f172a] max-w-[500px]">
+          <h3 className="font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-medium leading-[1.2] tracking-[-0.025em] text-[#0f172a] w-full">
             Strategy first. <span className="italic font-normal text-[#0066cc]">Creativity always.</span>
           </h3>
 
@@ -82,7 +82,7 @@ export default function About() {
           </p>
         </div>
 
-        {/* Quote Section — flows on right, wraps below image when content exceeds */}
+        {/* Quote Section — flows on left, wraps below image when content exceeds */}
         <div className="mt-12">
           <blockquote className="about-copy-p font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-medium leading-[1.2] tracking-[-0.025em] text-[#0f172a] mb-8">
             "Bold ideas can both move the world and uplift businesses - and we've spent every year proving it."

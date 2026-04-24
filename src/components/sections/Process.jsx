@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useProcessAnimation } from '../../hooks/useScrollAnimations';
 import { VBackgroundPattern } from './VShape';
+import processHomePage from '../../assets/processHomePage.jpeg';
 
 const STEPS = [
   {
@@ -33,52 +34,118 @@ const STEPS = [
     heading: "Performance & iteration",
     desc: "We track cross-channel results against shared goals and continuously refine spend, creative, and messaging.",
   },
+  {
+    num: "06",
+    title: "SCALE",
+    heading: "Growth & amplification",
+    desc: "We take validated winning formulas and scale them across new markets and segments to multiply your brand's impact.",
+  }
 ];
 
 export default function Process() {
   const sectionRef = useRef(null);
+  const imageRef = useRef(null);
 
-  useProcessAnimation({ sectionRef });
+  useProcessAnimation({ sectionRef, imageRef });
+
+  const leftSteps = STEPS.slice(0, 3);
+  const rightSteps = STEPS.slice(3, 6);
 
   return (
     <section
       ref={sectionRef}
-      className="relative bg-[#ffffff] text-[#0f172a] py-8 px-[6vw]  overflow-hidden py-14"
+      className="relative overflow-hidden bg-[#ffffff] px-[4vw] py-8 sm:px-[5vw] sm:py-10 md:px-[6vw] md:py-12 lg:px-[6vw] lg:py-14 text-[#0f172a] "
       id="process"
       aria-label="Our process"
     >
       <VBackgroundPattern color="#0f172a" opacity={0.02} />
 
-      <div className="">
-        <p className="process-label font-sans text-[1rem] font-bold tracking-[0.3em] uppercase text-[#666] py-4">(Our Process)</p>
-        <h2 className="process-headline font-serif text-[clamp(2.8rem,4.5vw,5rem)] font-medium leading-[1.2] tracking-[-0.025em] max-w-[900px] mt-4">
-          One strategy. <span className="italic font-normal text-[#0066cc]">Every</span> channel. <span className="italic font-normal text-[#0066cc]">No exceptions.</span>
+      <div className="relative z-10 mx-auto max-w-[1440px]">
+        <p className="process-label py-2 sm:py-4 font-sans text-[0.9rem] sm:text-[1rem] font-bold uppercase tracking-[0.3em] text-[#666] text-center sm:text-left">(Our Process)</p>
+        <h2 className="process-headline mt-2 sm:mt-4 w-full font-serif text-[clamp(1.8rem,4.7vw,5.1rem)] font-medium leading-[1.08] tracking-[-0.03em] text-center sm:text-left">
+          One strategy. <span className="font-normal italic text-[#0066cc]">Every</span> channel. <span className="font-normal italic text-[#0066cc]">No exceptions.</span>
         </h2>
-        <p className="process-description font-sans text-[clamp(1rem,1.2vw,1.125rem)] leading-[1.75] text-[#555] max-w-[600px] mt-10 font-light">
-          Integrated Marketing Communication is how we work — not a service we upsell. From the first brief to the final campaign report, everything we do is built on one unified foundation.
+        <p className="process-description mt-4 sm:mt-8 w-full font-sans text-[clamp(0.9rem,1.2vw,1.125rem)] font-light leading-[1.8] text-[#555] text-center sm:text-left max-w-none sm:max-w-[90%] lg:max-w-none">
+          Integrated Marketing Communication is how we work, not a service we upsell. From the first brief to the final campaign
+          report, everything we do is built on one unified foundation.
         </p>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16 mt-20" role="list">
-        {STEPS.map((step, index) => (
-          <div
-            key={step.num}
-            className="process-step group flex flex-col gap-6 pt-10 border-t border-black/10 transition-colors duration-500 hover:border-[#0066cc]/30"
-            role="listitem"
-            aria-label={`Step ${step.num}: ${step.title}`}
-          >
-            <div className="process-number font-serif text-[4.5rem] font-bold leading-none text-black/10 tracking-tighter group-hover:text-[#0066cc]/20 transition-colors duration-500" aria-hidden="true">
-              {step.num}
+        {/* Desktop: 3 Columns (Left Steps, Image, Right Steps). Mobile/Tablet: Stacked */}
+        <div className="mt-12 sm:mt-16 lg:mt-24">
+          <div className="flex flex-col lg:flex-row items-center lg:items-stretch gap-8 lg:gap-12">
+
+            {/* Left Steps Column */}
+            <div className="process-steps-column flex-1 w-full lg:w-auto">
+              <div className="flex flex-col gap-4 sm:gap-5 h-full justify-between">
+                {leftSteps.map((step) => (
+                  <StepCard key={step.num} step={step} />
+                ))}
+              </div>
             </div>
-            <div className="process-step-content flex flex-col gap-4">
-              <h3 className="process-step-title font-serif text-[clamp(1.5rem,2.5vw,2.2rem)] font-medium leading-tight text-[#0f172a]">{step.title}</h3>
-              <h4 className="process-step-heading font-sans text-sm font-bold tracking-widest uppercase text-[#0066cc] opacity-80">{step.heading}</h4>
-              <p className="process-step-desc font-sans text-base leading-relaxed font-light text-[#555]">{step.desc}</p>
+
+            {/* Center Image Section with Fresh Animation */}
+            <div className="process-visual-wrap flex items-center justify-center flex-shrink-0 w-full lg:w-[400px] order-first lg:order-none mb-8 lg:mb-0">
+              <div className="process-image-shell relative w-full max-w-[320px] md:max-w-[400px] overflow-hidden rounded-[24px] shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+                {/* Clean hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 z-10" />
+
+                <img
+                  ref={imageRef}
+                  src={processHomePage}
+                  alt="Veltex process visual"
+                  loading="eager"
+                  className="process-image block h-auto w-full object-cover rounded-[24px] shadow-[0_20px_50px_rgba(0,0,0,0.15)]"
+                  style={{
+                    animation: 'gentleFloat 2s ease-in-out infinite'
+                  }}
+                />
+
+                {/* CSS definition for float */}
+                <style>{`
+                  @keyframes gentleFloat {
+                    0% { transform: translateY(0px); }
+                    50% { transform: translateY(-12px); }
+                    100% { transform: translateY(0px); }
+                  }
+                `}</style>
+              </div>
             </div>
+
+            {/* Right Steps Column */}
+            <div className="process-steps-column flex-1 w-full lg:w-auto">
+              <div className="flex flex-col gap-4 sm:gap-5 h-full justify-between">
+                {rightSteps.map((step) => (
+                  <StepCard key={step.num} step={step} />
+                ))}
+              </div>
+            </div>
+
           </div>
-        ))}
+        </div>
       </div>
     </section>
+  );
+}
+
+function StepCard({ step }) {
+  return (
+    <div
+      className="process-step group relative flex h-full flex-col justify-center overflow-hidden rounded-[16px] sm:rounded-[20px] border border-black/10 bg-white p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:border-[#0066cc]/30 hover:shadow-[0_15px_40px_rgba(0,102,204,0.08)]"
+      role="listitem"
+      aria-label={`Step ${step.num}: ${step.title}`}
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0066cc]/45 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="flex items-center gap-4 mb-3">
+        <div className="process-number font-serif text-[clamp(1.8rem,3vw,2.5rem)] font-bold leading-none tracking-[-0.06em] text-black/10 transition-colors duration-500 group-hover:text-[#0066cc]/25" aria-hidden="true">
+          {step.num}
+        </div>
+        <h3 className="process-step-title font-serif text-[clamp(1.1rem,1.3vw,1.4rem)] font-semibold leading-[1.08] text-[#0b1220]">{step.title}</h3>
+      </div>
+      <div className="process-step-content flex flex-col gap-2">
+        <h4 className="process-step-heading font-sans text-[0.7rem] md:text-[0.75rem] font-semibold uppercase tracking-[0.22em] text-[#0057b8]">{step.heading}</h4>
+        <p className="process-step-desc font-sans text-[0.85rem] sm:text-[0.95rem] leading-[1.68] font-normal text-[#1f2937]">{step.desc}</p>
+      </div>
+    </div>
   );
 }
 
