@@ -4,7 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
 
 // Backend API URL
-const API_URL = 'https://veltex-v5-production.up.railway.app/api/contact';
+// Automatically uses localhost in dev mode, and Railway URL in production (build)
+const API_URL = import.meta.env.DEV
+  ? 'http://localhost:5000/api/contact'
+  : 'https://veltex-v5-production.up.railway.app/api/contact';
 
 export default function ContactPage() {
   const containerRef = useRef(null);
@@ -19,18 +22,47 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  // SUBMIT HANDLER USING AXIOS
+  // SUBMIT HANDLER USING AXIOS + WEB3FORMS (FRONTEND EMAIL)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); setError(''); setSuccess(false);
     try {
+      // 1. Backend me data save karo (Database ke liye)
       const response = await axios.post(API_URL, formData);
-      if (response.data.success) {
+
+      // 2. Frontend se Email bhejo (Web3Forms ke zariye)
+      const web3Response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: "2385f6db-069f-4113-b9a0-87838fa0bba2",
+          subject: `New Project Enquiry: ${formData.name}`,
+          from_name: "Veltex Studio",
+          replyto: formData.email,
+          message: `
+            Name: ${formData.name}
+            Email: ${formData.email}
+            Service: ${formData.service || 'Not specified'}
+            Message: ${formData.message}
+          `
+        })
+      });
+
+      const web3Result = await web3Response.json();
+      console.log("Web3Forms Response:", web3Result);
+
+      if (response.data.success && web3Result.success) {
         setSuccess(true);
         setFormData({ name: '', email: '', service: '', message: '' });
+      } else if (!web3Result.success) {
+        console.error("Web3Forms Error:", web3Result.message);
+        setError("Email could not be sent: " + web3Result.message);
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Unable to connect to the server. Please check your connection.');
+      setError(err.response?.data?.message || 'Something went wrong. Please check your connection.');
     } finally {
       setLoading(false);
     }
@@ -153,12 +185,47 @@ export default function ContactPage() {
                   required
                   className={`w-full bg-white border border-black/10 rounded-2xl px-5 py-4 font-sans text-[1rem] focus:outline-none focus:border-[#0066cc] focus:ring-4 focus:ring-[#0066cc]/10 transition-all shadow-sm appearance-none cursor-pointer pr-12 ${formData.service === '' ? 'text-black/30' : 'text-[#0f172a]'}`}
                 >
-                  <option value="" disabled className="text-black/30">Select an option...</option>
-                  <option value="Brand Identity" className="text-[#0f172a]">Brand Identity</option>
-                  <option value="Integrated Campaigns" className="text-[#0f172a]">Integrated Campaigns</option>
-                  <option value="Digital Experience" className="text-[#0f172a]">Digital Experience</option>
-                  <option value="Optimization" className="text-[#0f172a]">Optimization</option>
-                  <option value="Other" className="text-[#0f172a]">Other</option>
+                  <option value="" disabled>Select an option...</option>
+                  
+                  <optgroup label="BRAND SOLUTIONS">
+                    <option value="Social Media Management">Social Media Management</option>
+                    <option value="Original Content and Copywriting">Original Content and Copywriting</option>
+                    <option value="Graphic Design & Illustrations">Graphic Design & Illustrations</option>
+                    <option value="Video Editing and Animation">Video Editing and Animation</option>
+                    <option value="Film Production & Photography">Film Production & Photography</option>
+                    <option value="Campaign Planning">Campaign Planning</option>
+                    <option value="Veltex Fluence & ORM">Veltex Fluence & ORM</option>
+                    <option value="Print, OOH, Mainline Advertising">Print, OOH, Mainline Advertising</option>
+                    <option value="New Brand Launch and Rebranding">New Brand Launch and Rebranding</option>
+                  </optgroup>
+
+                  <optgroup label="MEDIA SOLUTIONS">
+                    <option value="Media Planning & Buying">Media Planning & Buying</option>
+                    <option value="Performance Marketing">Performance Marketing</option>
+                    <option value="Programmatic Advertising">Programmatic Advertising</option>
+                    <option value="Market Research & Insights">Market Research & Insights</option>
+                    <option value="SEO & Organic Growth">SEO & Organic Growth</option>
+                    <option value="Influencer Media Strategy">Influencer Media Strategy</option>
+                  </optgroup>
+
+                  <optgroup label="TECH SOLUTIONS">
+                    <option value="UI/UX Design & Prototyping">UI/UX Design & Prototyping</option>
+                    <option value="Web & App Development">Web & App Development</option>
+                    <option value="CRM & CMS Implementation">CRM & CMS Implementation</option>
+                    <option value="Marketing Automation">Marketing Automation</option>
+                    <option value="Custom API Integrations">Custom API Integrations</option>
+                    <option value="E-commerce Architectures">E-commerce Architectures</option>
+                  </optgroup>
+
+                  <optgroup label="CPaaS SOLUTIONS">
+                    <option value="WhatsApp Business Messaging (WABA)">WhatsApp Business Messaging (WABA)</option>
+                    <option value="Rich Communication Service (RCS)">Rich Communication Service (RCS)</option>
+                    <option value="SMS Solutions">SMS Solutions</option>
+                    <option value="Email Enterprise Platform">Email Enterprise Platform</option>
+                    <option value="Enterprise Voice Platform">Enterprise Voice Platform</option>
+                  </optgroup>
+
+                  <option value="Other">Other (General Inquiry)</option>
                 </select>
                 <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-[#666]">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

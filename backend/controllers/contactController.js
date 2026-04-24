@@ -12,6 +12,7 @@ export const submitContactForm = async (req, res) => {
       });
     }
 
+    // 1. Save to Database
     const newSubmission = await Contact.create({ name, email, service, message });
 
     return res.status(201).json({
