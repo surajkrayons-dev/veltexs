@@ -4,9 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
 
 // Backend API URL
-// LOCAL TESTING KE LIYE (Jab test ho jaye to ise wapas production url par kar dena)
-// const API_URL = 'http://localhost:5000/api/contact';
-const API_URL = 'https://veltex-v5-production.up.railway.app/api/contact';
+// Automatically uses localhost in dev mode, and Railway URL in production (build)
+const API_URL = import.meta.env.DEV 
+  ? 'http://localhost:5000/api/contact' 
+  : 'https://veltex-v5-production.up.railway.app/api/contact';
 
 export default function ContactPage() {
   const containerRef = useRef(null);
