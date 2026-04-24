@@ -1,10 +1,16 @@
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true, // Use SSL/TLS
   auth: {
-    user: process.env.EMAIL_USER, // Set in your .env file
-    pass: process.env.EMAIL_PASS  // Set in your .env file (App Password)
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  },
+  // Sometimes cloud servers like Railway have issues with DNS/TLS resolving, this helps:
+  tls: {
+    rejectUnauthorized: false
   }
 });
 
@@ -55,9 +61,9 @@ export const sendContactEmail = async (name, email, service, message) => {
   try {
     await transporter.sendMail(mailOptions);
     console.log('Premium Email notification sent successfully.');
-    return true;
+    return { success: true };
   } catch (error) {
     console.error('Email Notification Error:', error.message);
-    return false;
+    return { success: false, errorMsg: error.message };
   }
 };

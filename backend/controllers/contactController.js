@@ -18,15 +18,15 @@ export const submitContactForm = async (req, res) => {
 
     // 2. EXTRA FUNCTIONALITY: Send email notification
     // Ab hum isko 'await' karenge. Agar mail fail hua, to hum error throw karenge.
-    const emailSent = await sendContactEmail(name, email, service, message);
+    const emailResult = await sendContactEmail(name, email, service, message);
 
-    if (!emailSent) {
+    if (!emailResult.success) {
       // Agar email send nahi hua (due to wrong credentials), to database se bhi entry delete kar do
       // taaki data mismatch na ho aur user ko error show ho.
       await newSubmission.destroy();
       return res.status(500).json({
         success: false,
-        message: 'Could not send email notification. Please check server email configuration.'
+        message: `Railway Error: ${emailResult.errorMsg}. Please check server email configuration.`
       });
     }
 
