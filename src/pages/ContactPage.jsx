@@ -153,35 +153,45 @@ export default function ContactPage() {
 
           {/* Left: Contact Info */}
           <div className="lg:col-span-4 flex flex-col gap-14 pt-2">
+            {/* projects we do */}
             <div className="contact-info-block flex flex-col gap-4 group cursor-default">
-              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Direct Line</span>
-              <a href="mailto:Hello@veltexs.com" className="font-serif text-[1.9rem] leading-none tracking-tight text-[#0f172a] group-hover:text-[#0066cc] transition-all duration-500 relative inline-block w-fit">
-                Hello@veltexs.com
-                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#0066cc] group-hover:w-full transition-all duration-500" />
-              </a>
-            </div>
-
-            <div className="contact-info-block flex flex-col gap-4 group cursor-default">
-              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Business Call</span>
-              <a href="tel:+919485628238" className="font-serif text-[1.9rem] leading-none tracking-tight text-[#0f172a] group-hover:text-[#0066cc] transition-all duration-500 relative inline-block w-fit">
-                +91 9485628238
-                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#0066cc] group-hover:w-full transition-all duration-500" />
-              </a>
-            </div>
-
-            <div className="contact-info-block flex flex-col gap-4 group cursor-default">
-              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Studio Hub</span>
-              <p className="font-sans text-[1.05rem] leading-[1.65] text-[#444] max-w-[320px] group-hover:text-[#0f172a] transition-colors duration-500">
-                711, Plot A09, ITL Towers, Netaji Subhash Place, Pitampura, Delhi (110034)
-              </p>
-            </div>
-
-            <div className="contact-info-block flex flex-col gap-4 group cursor-default">
-              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Operating Locally</span>
+              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Open To</span>
               <p className="font-sans text-[1.05rem] leading-[1.65] text-[#444] max-w-[300px] group-hover:text-[#0f172a] transition-colors duration-500">
                 Across India & Global Creative Projects
               </p>
             </div>
+            {/* email */}
+            <div className="contact-info-block flex flex-col gap-4 group cursor-default">
+              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Email</span>
+              <a href="mailto:Hello@veltexs.com" className="font-serif text-[1.9rem] leading-none tracking-tight text-[#0f172a] group-hover:text-[#0066cc] transition-all duration-500 relative inline-block w-fit">
+                hello@veltexs.com
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#0066cc] group-hover:w-full transition-all duration-500" />
+              </a>
+            </div>
+            {/* contact us - WhatsApp */}
+            {/* <div className="contact-info-block flex flex-col gap-4 cursor-default">
+              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Business Chat</span>
+              <p className="font-sans text-[1.05rem] leading-[1.65] text-[#444] max-w-[300px]">
+                We are available 24x7 on chat support,{' '}
+                <a
+                  href="https://wa.me/919212108750?text=hi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link relative inline-block font-semibold text-[#0066cc] hover:text-[#004fa3] transition-colors duration-300 cursor-pointer"
+                >
+                  click to start chat.
+                  <span className="absolute bottom-[-2px] left-0 w-full h-[1.5px] bg-[#0066cc] scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300 origin-left" />
+                </a>
+              </p>
+            </div> */}
+            {/* address */}
+            {/* <div className="contact-info-block flex flex-col gap-4 group cursor-default">
+              <span className="font-sans text-[0.7rem] tracking-[0.25em] uppercase text-[#888] font-bold">Studio Hub</span>
+              <p className="font-sans text-[1.05rem] leading-[1.65] text-[#444] max-w-[320px] group-hover:text-[#0f172a] transition-colors duration-500">
+                711, Plot A09, ITL Towers, Netaji Subhash Place, Pitampura, Delhi (110034)
+              </p>
+            </div> */}
+
           </div>
 
           {/* Right: Premium Glass Form */}
