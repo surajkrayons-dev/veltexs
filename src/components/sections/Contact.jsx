@@ -23,8 +23,8 @@ export default function Contact() {
             For project enquiries,
             {" "}
             <em className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] via-[#00aaff] to-[#8cc63f] drop-shadow-sm pr-2 py-1">collaborations,</em>
-       
-          or joining the studio.
+
+            or joining the studio.
           </h2>
 
           <div className="contact-actions flex items-center gap-4 flex-wrap">
@@ -41,7 +41,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="https://wa.me/919485628238"
+              href="https://wa.me/919485628238?text=hi"
               className="contact-submit-btn inline-flex items-center gap-2 font-sans text-[0.9rem] font-medium text-white bg-[#8cc63f] px-9 py-4 rounded-full border-none cursor-pointer transition-all duration-300 hover:bg-[#a3d858] hover:-translate-y-[2px] tracking-wide outline-none shadow-[0_4px_16px_rgba(109,198,67,0.3)]"
               aria-label="Book a discovery call with Veltex"
               id="contact-call-btn"
@@ -57,21 +57,46 @@ export default function Contact() {
 
           {/* Subtle info row */}
           <div className="contact-info-row mt-16 pt-8 border-t border-black/10 flex gap-12 flex-col gap-6">
-            {[
-              { label: 'Email', value: 'Hello@veltexs.com' },
-              { label: 'Phone', value: '+91 9485628238' },
-              { label: 'Based in', value: '711, Plot A09, ITL Towers, Netaji Subhash Place, Pitampura,Delhi (110034)' },
-              { label: 'Open to', value: 'Across India & Global Projects' },
-            ].map((item) => (
-              <div key={item.label} className="contact-info-item">
-                <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#666] mb-1.5">
-                  {item.label}
-                </p>
-                <p className="font-sans text-[0.9rem] font-normal text-[#0f172a]">
-                  {item.value}
-                </p>
-              </div>
-            ))}
+
+            {/* Open To */}
+            <div className="contact-info-item">
+              <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#666] mb-1.5">
+                Open to
+              </p>
+              <p className="font-sans text-[0.9rem] font-normal text-[#0f172a]">
+                Across India &amp; Global Creative Projects
+              </p>
+            </div>
+
+            {/* Email */}
+            <div className="contact-info-item">
+              <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#666] mb-1.5">
+                Email
+              </p>
+              <p className="font-sans text-[0.9rem] font-normal text-[#0f172a]">
+                hello@veltexs.com
+              </p>
+            </div>
+
+            {/* Business Chat */}
+            {/* <div className="contact-info-item">
+              <p className="font-sans text-[0.65rem] tracking-[0.2em] uppercase text-[#666] mb-1.5">
+                Business Chat
+              </p>
+              <p className="font-sans text-[0.9rem] font-normal text-[#0f172a]">
+                We are available 24x7 on chat support,{' '}
+                <a
+                  href="https://wa.me/919212108750?text=hi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link relative inline-block font-semibold text-[#0066cc] hover:text-[#004fa3] transition-colors duration-300 cursor-pointer"
+                >
+                  click to start chat.
+                  <span className="absolute bottom-[-2px] left-0 w-full h-[1.5px] bg-[#0066cc] scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300 origin-left" />
+                </a>
+              </p>
+            </div> */}
+
           </div>
         </div>
       </div>

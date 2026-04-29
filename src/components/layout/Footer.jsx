@@ -3,7 +3,12 @@ import VeltexLogo from '../../assets/VeltexLogo.png';
 export default function Footer() {
   return (
     <footer
-      className="relative w-full py-24 px-[6vw] flex flex-col gap-6 font-sans font-semibold text-[0.75rem] uppercase tracking-[0.3em] z-[30] footer pb-32 sm:pb-40 text-black bg-blur-xl"
+      className="relative w-full py-24 px-[6vw] flex flex-col gap-6 font-sans font-semibold text-[0.75rem] uppercase tracking-[0.3em] z-[30] footer pb-32 sm:pb-40 text-black border-t border-black/5"
+      style={{
+        backdropFilter: 'blur(1.5px)',
+        WebkitBackdropFilter: 'blur(1.5px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)'
+      }}
       role="contentinfo"
     >
       <div className="mb-4 opacity-100 block">
