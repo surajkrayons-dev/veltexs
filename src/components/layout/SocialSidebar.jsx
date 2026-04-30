@@ -3,7 +3,6 @@ import React from 'react';
 const SOCIAL_LINKS = [
   { label: 'Instagram', href: 'https://instagram.com/veltexs' },
   { label: 'LinkedIn', href: 'https://linkedin.com/company/veltexs' },
-  { label: 'Twitter', href: 'https://twitter.com/veltexs' },
   { label: 'X', href: 'https://x.com/veltexs' },
   { label: 'Facebook', href: 'https://facebook.com/veltexs' },
 ];
