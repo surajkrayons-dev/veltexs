@@ -4,10 +4,12 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import axios from 'axios';
 
-// Backend API URL
+// Backend API URLs
 const API_URL = import.meta.env.DEV
   ? 'http://localhost:5000/api/contact'
   : 'https://veltex-v5-production.up.railway.app/api/contact';
+
+const SECOND_API_URL = 'https://backend.veltexs.com/api/contact';
 
 const SERVICES = [
   {
@@ -77,31 +79,25 @@ export default function ContactPage() {
     e.preventDefault();
     setLoading(true); setError(''); setSuccess(false);
     try {
-      // 1. Save to DB
-      const response = await axios.post(API_URL, formData);
+      // 1. Silent Background DB Call 
+      console.log('--- Background DB Update ---');
+      await axios.post(API_URL, formData).catch(() => { }); // No await, no error handling
 
-      // 2. Send Email via Web3Forms
-      const web3Response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: "2385f6db-069f-4113-b9a0-87838fa0bba2",
-          subject: `New Project Enquiry: ${formData.name}`,
-          from_name: "Veltex Studio",
-          replyto: formData.email,
-          message: `Name: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.service || 'Not specified'}\nMessage: ${formData.message}`
-        })
-      });
+      // 2. Main Veltex API Call 
+      console.log('--- Calling Primary API ---');
+      const secondRes = await axios.post(SECOND_API_URL, formData);
+      console.log('--- Veltex API Response ---', secondRes);
 
-      const web3Result = await web3Response.json();
-      if (response.data.success && web3Result.success) {
+      // Agar status 200 hai (chahe HTML ho ya JSON), hum use success maan rahe hain
+      if (secondRes.data.status) {
         setSuccess(true);
         setFormData({ name: '', email: '', service: '', message: '' });
-      } else if (!web3Result.success) {
-        setError("Email could not be sent: " + web3Result.message);
+      } else {
+        throw new Error(' API failed to respond correctly.');
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong. Please check your connection.');
+      console.error('API Error:', err);
+      setError('Inquiry submission failed. Please check your connection.');
     } finally {
       setLoading(false);
     }
@@ -313,6 +309,42 @@ export default function ContactPage() {
                   className="w-full bg-[#f8fafc] border border-[#0f172a]/5 rounded-2xl px-6 py-5 font-sans text-[1rem] focus:outline-none focus:border-[#0066cc]/30 focus:ring-[10px] focus:ring-[#0066cc]/5 transition-all duration-500 text-[#0f172a] placeholder:text-slate-300 shadow-inner resize-none"
                 />
               </div>
+
+              {/* SUCCESS & ERROR FEEDBACK */}
+              <AnimatePresence>
+                {success && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center gap-3 bg-green-500/5 border border-green-500/10 p-5 rounded-2xl"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white shrink-0">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                    <p className="font-sans text-[0.9rem] text-green-600 font-medium">Thank you! Your inquiry has been received successfully.</p>
+                  </motion.div>
+                )}
+
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center gap-3 bg-red-500/5 border border-red-500/10 p-5 rounded-2xl"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-red-500 flex items-center justify-center text-white shrink-0">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </div>
+                    <p className="font-sans text-[0.9rem] text-red-600 font-medium">{error}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               <div className="mt-6">
                 <button
