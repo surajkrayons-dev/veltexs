@@ -7,7 +7,7 @@
   "theme_color": "#0a0a0a",
   "icons": [
     {
-      "src": "/1vLogo.jpg",
+      "src": "/vLogo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
