@@ -1,10 +1,10 @@
 import React from 'react';
 
 const SOCIAL_LINKS = [
-  { label: 'Instagram', href: 'https://instagram.com/veltexs' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/company/veltexs' },
+  { label: 'Instagram', href: 'https://www.instagram.com/veltexs/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/veltexservices/posts/?feedView=all' },
   { label: 'X', href: 'https://x.com/veltexs' },
-  { label: 'Facebook', href: 'https://facebook.com/veltexs' },
+  { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61589585259927' },
 ];
 
 export default function SocialSidebar() {
